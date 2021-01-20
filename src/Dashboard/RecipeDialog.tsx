@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     [theme.breakpoints.down('xs')]: { flexDirection: 'column' },
   },
+  upperContent: { padding: 10 },
 }));
 
 export default function RecipeDialog({
@@ -46,10 +47,10 @@ export default function RecipeDialog({
   preparationTime,
 }: RecipeDialogProps) {
   const classes = useStyles();
-  const splittedIngredients = ingredients.split(';');
+  const splittedIngredients = ingredients.split(',');
 
   return (
-    <Dialog open fullScreen onClose={handleClose}>
+    <Dialog open maxWidth='lg' onClose={handleClose}>
       <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -68,43 +69,59 @@ export default function RecipeDialog({
       <DialogContent>
         <div className={classes.flexContainer}>
           <img src={headerImage} alt={name} className={classes.headerImg} />
-          <ul>
-            {splittedIngredients.map((ingredient: string, idx: number) => (
-              <li key={idx}>
-                <Typography variant='body2' color='textSecondary' component='p'>
-                  {ingredient}
-                </Typography>
-              </li>
-            ))}
-          </ul>
-          <div>
-            {categories.map((category: string, idx: number) => (
-              <Chip
-                key={idx}
-                className={classes.chip}
-                size='small'
-                label={category}
-                color='primary'
-              />
-            ))}
+          <div className={classes.upperContent}>
+            <Typography className={classes.info} variant='body1'>
+              <strong>Cuisine:</strong> Spanish <strong>Course:</strong> Lunch{' '}
+              <strong>Level:</strong> : Advanced
+            </Typography>
+            <Divider className={classes.divider} />
+            <Typography
+              className={classes.info}
+              variant='body2'
+              color='textSecondary'
+            >
+              Preparation time: {preparationTime}
+            </Typography>
+            <Typography
+              className={classes.info}
+              variant='body2'
+              color='textSecondary'
+            >
+              Cooking time: {cookTime}
+            </Typography>
+            <Typography
+              className={classes.info}
+              variant='body2'
+              color='textSecondary'
+            >
+              Servings: 5
+            </Typography>
+            <Divider className={classes.divider} />
+
+            <div>
+              {categories.map((category: string, idx: number) => (
+                <Chip
+                  key={idx}
+                  className={classes.chip}
+                  size='small'
+                  label={category}
+                  color='primary'
+                />
+              ))}
+            </div>
           </div>
         </div>
 
         <Divider className={classes.divider} />
-        <Typography
-          className={classes.info}
-          variant='body2'
-          color='textSecondary'
-        >
-          Preparation time: {preparationTime}
-        </Typography>
-        <Typography
-          className={classes.info}
-          variant='body2'
-          color='textSecondary'
-        >
-          Cooking time: {cookTime}
-        </Typography>
+        <ul>
+          {splittedIngredients.map((ingredient: string, idx: number) => (
+            <li key={idx}>
+              <Typography variant='body2' color='textSecondary' component='p'>
+                {ingredient}
+              </Typography>
+            </li>
+          ))}
+        </ul>
         <Divider className={classes.divider} />
         <ol className={classes.list}>
           {steps.split(';').map((step: string, idx: number) => (
