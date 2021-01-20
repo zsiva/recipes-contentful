@@ -5,11 +5,13 @@ import {
   InputBase,
   fade,
   CircularProgress,
+  Container,
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { blue } from '@material-ui/core/colors';
 import RecipeCard, { RecipeCardProps } from './RecipeCard';
 import { recipesMock } from './recipesMock';
+import RecipeCardList from './RecipeCardList';
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -41,8 +43,20 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid',
     borderRadius: 5,
   },
-  row: {
-    padding: 10,
+  row: { padding: 10 },
+  categoriesList: {
+    padding: 9,
+    background: '#3f51b5',
+    '& li': {
+      margin: 0,
+      borderBottom: '1px solid #3f61b6',
+      minHeight: 50,
+      display: 'flex',
+      padding: '0 18px',
+      justifyContent: 'space-between',
+      alignItems: 'center',
+      color: 'white',
+    },
   },
 }));
 
@@ -62,37 +76,42 @@ const Dashboard = () => {
     return <CircularProgress />;
   }
   return (
-    <Grid container>
-      <Grid item xs={12} className={classes.row}>
-        <div className={classes.search}>
-          <div className={classes.searchIcon}>
-            <SearchIcon />
+    <Container>
+      <Grid container>
+        <Grid item xs={12} className={classes.row}>
+          <div className={classes.search}>
+            <div className={classes.searchIcon}>
+              <SearchIcon />
+            </div>
+            <InputBase
+              onChange={(e) => setSearchString(e.target.value)}
+              placeholder='Search…'
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+            />
           </div>
-          <InputBase
-            onChange={(e) => setSearchString(e.target.value)}
-            placeholder='Search…'
-            classes={{
-              root: classes.inputRoot,
-              input: classes.inputInput,
-            }}
-            inputProps={{ 'aria-label': 'search' }}
-          />
-        </div>
-      </Grid>
-
-      {recipesFiltered.map((recipe) => (
-        <Grid
-          item
-          xs={12}
-          sm={4}
-          lg={3}
-          key={recipe.id}
-          className={classes.row}
-        >
-          <RecipeCard {...recipe} />
         </Grid>
-      ))}
-    </Grid>
+        <Grid container>
+          <Grid item xs={10}>
+            {recipesFiltered.map((recipe) => (
+              <Grid item xs={12} key={recipe.id}>
+                <RecipeCardList {...recipe} />
+              </Grid>
+            ))}
+          </Grid>
+          <Grid item xs={2}>
+            <ul className={classes.categoriesList}>
+              <li>Breakfast</li>
+              <li>Starter</li>
+              <li>Lunch</li>
+            </ul>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Container>
   );
 };
 

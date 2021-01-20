@@ -2,6 +2,8 @@ export const recipesMock = [
   {
     id: 'r-1',
     name: 'Tortilla de patatas',
+    description:
+      'La tradicional receta de tortilla de patatas o tortilla española, un plato básico de la cocina española a base de patatas, huevo y cebolla.',
     ingredients:
       '6 huevos,3 patatas,1 cebolla pequeña,2 vasos de aceite de oliva,sal',
     steps: 'Pela y pica la cebolla en dados medianos.',
@@ -23,6 +25,8 @@ export const recipesMock = [
   {
     id: 'r-2',
     name: 'Paella vegetariana',
+    description:
+      'La tradicional receta de tortilla de patatas o tortilla española, un plato básico de la cocina española a base de patatas, huevo y cebolla.',
     ingredients:
       '400 gr de arroz bomba,3 dientes de ajo,1 cebolla,1 calabacín pequeño,2 alcachofas',
     steps: 'Pela y pica la cebolla en dados medianos.',
@@ -44,6 +48,8 @@ export const recipesMock = [
   {
     id: 'r-3',
     name: 'Arroz caldoso',
+    description:
+      'La tradicional receta de tortilla de patatas o tortilla española, un plato básico de la cocina española a base de patatas, huevo y cebolla.',
     ingredients:
       '400 gr de arroz bomba,3 dientes de ajo,1 cebolla,1 calabacín pequeño,2 alcachofas',
     steps:
@@ -65,6 +71,8 @@ export const recipesMock = [
   {
     id: 'r-4',
     name: 'Cous cous',
+    description:
+      'La tradicional receta de tortilla de patatas o tortilla española, un plato básico de la cocina española a base de patatas, huevo y cebolla.',
     ingredients:
       '200 gr de cous cous, 5 zanahorias, 1 pimiento rojo, 4 alcachofas, 1 calabaza, 1/2 cebolla, 1 nabo, 1 puerro, 1 tomate',
     steps:

@@ -8,7 +8,6 @@ import { green } from '@material-ui/core/colors';
 import Chip from '@material-ui/core/Chip';
 import RecipeDialog from './RecipeDialog';
 import { Divider, Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   media: { height: 0, paddingTop: '50%' },
@@ -36,6 +35,7 @@ export type RecipeCardProps = {
   author: string;
   headerImage: string;
   steps: string;
+  description: string;
 };
 
 export default function RecipeCard(props: RecipeCardProps) {
@@ -69,16 +69,6 @@ export default function RecipeCard(props: RecipeCardProps) {
             color='primary'
           >
             View
-          </Button>
-
-          <Button
-            color='primary'
-            className={classes.rightButton}
-            aria-label='view'
-            component={Link}
-            to={`/update-recipe/${props.id}`}
-          >
-            Edit
           </Button>
         </div>
         <Divider />
