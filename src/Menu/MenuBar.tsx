@@ -1,20 +1,31 @@
 import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
-import { Button } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Button, Container, makeStyles } from '@material-ui/core';
+
+const useStyles = makeStyles((theme) => ({
+  bar: {
+    padding: 10,
+  },
+  buttonRight: {
+    float: 'right',
+  },
+}));
 
 export default function MenuBar() {
+  const classes = useStyles();
   return (
-    <AppBar position='static'>
-      <Toolbar>
-        <Button color='inherit' component={Link} to='/dashboard'>
+    <AppBar position='static' className={classes.bar}>
+      <Container>
+        <Button color='inherit'>
           <Typography variant='h6' noWrap>
             Recipes
           </Typography>
         </Button>
-      </Toolbar>
+        <Button color='inherit' className={classes.buttonRight}>
+          Create menu
+        </Button>
+      </Container>
     </AppBar>
   );
 }

@@ -11,6 +11,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import { blue } from '@material-ui/core/colors';
 import RecipeCard, { RecipeCardProps } from './RecipeCard';
 import { recipesMock } from './recipesMock';
+import RecipeCardList2 from './RecipeCardList2';
 import RecipeCardList from './RecipeCardList';
 
 const useStyles = makeStyles((theme) => ({
@@ -45,8 +46,9 @@ const useStyles = makeStyles((theme) => ({
   },
   row: { padding: 10 },
   categoriesList: {
-    padding: 9,
+    padding: 10,
     background: '#3f51b5',
+    margin: 0,
     '& li': {
       margin: 0,
       borderBottom: '1px solid #3f61b6',
@@ -94,7 +96,7 @@ const Dashboard = () => {
             />
           </div>
         </Grid>
-        <Grid container>
+        <Grid container spacing={2}>
           <Grid item xs={10}>
             {recipesFiltered.map((recipe) => (
               <Grid item xs={12} key={recipe.id}>
