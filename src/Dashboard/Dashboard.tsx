@@ -9,10 +9,8 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { blue } from '@material-ui/core/colors';
-import RecipeCard, { RecipeCardProps } from './RecipeCard';
-import { recipesMock } from './recipesMock';
-import RecipeCardList2 from './RecipeCardList2';
 import RecipeCardList from './RecipeCardList';
+import { fetchContentData, IRecipeFields } from '../contentful/fetchData';
 
 const useStyles = makeStyles((theme) => ({
   search: {
@@ -65,16 +63,24 @@ const useStyles = makeStyles((theme) => ({
 const Dashboard = () => {
   const classes = useStyles();
   const [search, setSearchString] = useState('');
-  const [recipes, setRecipes] = useState([] as RecipeCardProps[]);
-  const recipesFiltered: RecipeCardProps[] = recipes.filter((recipe) =>
+  const [recipes, setRecipes] = useState<IRecipeFields[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const recipesFiltered: IRecipeFields[] = recipes.filter((recipe) =>
     recipe.name.toLowerCase().includes(search.toLowerCase())
   );
 
   useEffect(() => {
-    setRecipes(recipesMock);
+    const fetchData = async () => {
+      const data = await fetchContentData('es');
+      setRecipes(data);
+      setIsLoading(false);
+    };
+
+    fetchData();
   }, []);
 
-  if (recipes.length === 0) {
+  if (isLoading) {
     return <CircularProgress />;
   }
   return (

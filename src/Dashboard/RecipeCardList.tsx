@@ -5,6 +5,7 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import RecipeDialog from './RecipeDialog';
+import { IRecipeFields } from '../contentful/fetchData';
 
 const useStyles = makeStyles((theme) => ({
   card: { display: 'flex', marginBottom: 20 },
@@ -20,6 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   cover: {
     width: '40%',
+    backgroundSize: 'contain',
     '&:hover': {
       opacity: '0.5',
       cursor: 'pointer',
@@ -38,26 +40,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export type RecipeCardProps = {
-  id: string;
-  name: string;
-  ingredients: string;
-  categories: string[];
-  cookTime: number;
-  preparationTime: number;
-  servings: number;
-  rating: number;
-  author: string;
-  headerImage: string;
-  steps: string;
-  description: string;
-};
+export type IRecipeCardListProps = IRecipeFields;
 
-export default function RecipeCardList(props: RecipeCardProps) {
+export default function RecipeCardList(props: IRecipeCardListProps) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const splittedIngredients = props.ingredients.split(',');
-
+  const splittedIngredients: string[] = props.ingredients.split(',');
   return (
     <>
       <Card className={classes.card}>
@@ -67,6 +55,7 @@ export default function RecipeCardList(props: RecipeCardProps) {
           title={props.name}
           onClick={() => setOpen(true)}
         />
+
         <div className={classes.details}>
           <CardContent className={classes.content}>
             <Typography component='h5' variant='h6' className={classes.title}>

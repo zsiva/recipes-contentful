@@ -10,9 +10,9 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import { green } from '@material-ui/core/colors';
 import DialogContent from '@material-ui/core/DialogContent';
-import { RecipeCardProps } from './RecipeCard';
+import { IRecipeFields } from '../contentful/fetchData';
 
-type RecipeDialogProps = RecipeCardProps & {
+type RecipeDialogProps = IRecipeFields & {
   handleClose: () => void;
 };
 
