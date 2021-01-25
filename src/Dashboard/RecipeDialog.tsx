@@ -107,8 +107,22 @@ export default function RecipeDialog({
         </div>
 
         <Divider className={classes.divider} />
+        <Typography
+          className={classes.info}
+          variant='body1'
+          color='textSecondary'
+        >
+          Ingredients
+        </Typography>
         {documentToReactComponents(ingredients)}
         <Divider className={classes.divider} />
+        <Typography
+          className={classes.info}
+          variant='body1'
+          color='textSecondary'
+        >
+          Steps
+        </Typography>
         {documentToReactComponents(steps)}
       </DialogContent>
     </Dialog>

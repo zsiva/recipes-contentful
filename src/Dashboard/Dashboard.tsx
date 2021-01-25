@@ -104,7 +104,7 @@ const Dashboard = () => {
         </Grid>
         <Grid container spacing={2}>
           {recipesFiltered.map((recipe) => (
-            <Grid item xs={4} key={recipe.id}>
+            <Grid item sm={4} xs={12} key={recipe.id}>
               <RecipeCard {...recipe} />
             </Grid>
           ))}
