@@ -3,14 +3,22 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
-import Typography from '@material-ui/core/Typography';
 import { green } from '@material-ui/core/colors';
 import Chip from '@material-ui/core/Chip';
-import RecipeDialog from './RecipeDialog';
 import { Divider, Button } from '@material-ui/core';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { IRecipeFields } from '../contentful/fetchData';
+import RecipeDialog from './RecipeDialog';
 
 const useStyles = makeStyles((theme) => ({
-  media: { height: 0, paddingTop: '50%' },
+  media: {
+    height: 0,
+    paddingTop: '50%',
+    '&:hover': {
+      opacity: '0.5',
+      cursor: 'pointer',
+    },
+  },
   rightButton: {
     float: 'right',
     [theme.breakpoints.only('sm')]: {
@@ -23,25 +31,10 @@ const useStyles = makeStyles((theme) => ({
   card: { position: 'relative' },
 }));
 
-export type RecipeCardProps = {
-  id: string;
-  name: string;
-  ingredients: string;
-  categories: string[];
-  cookTime: number;
-  preparationTime: number;
-  servings: number;
-  rating: number;
-  author: string;
-  headerImage: string;
-  steps: string;
-  description: string;
-};
-
-export default function RecipeCard(props: RecipeCardProps) {
+export default function RecipeCard(props: IRecipeFields) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
-  const splittedIngredients = props.ingredients.split(',');
+
   return (
     <>
       <Card className={classes.card}>
@@ -50,17 +43,14 @@ export default function RecipeCard(props: RecipeCardProps) {
           className={classes.media}
           image={props.headerImage}
           title={props.name}
+          onClick={() => setOpen(true)}
         />
-
-        {props.categories.map((category: string, idx: number) => (
-          <Chip
-            key={idx}
-            className={classes.chip}
-            size='small'
-            label={category}
-            color='primary'
-          />
-        ))}
+        <Chip
+          className={classes.chip}
+          size='small'
+          label={props.categories}
+          color='primary'
+        />
         <div className={classes.rightButton}>
           <Button
             className={classes.rightButton}
@@ -72,15 +62,7 @@ export default function RecipeCard(props: RecipeCardProps) {
           </Button>
         </div>
         <Divider />
-        <ul className={classes.list}>
-          {splittedIngredients.map((ingredient: string, idx: number) => (
-            <li key={idx}>
-              <Typography variant='body2' color='textSecondary' component='p'>
-                {ingredient}
-              </Typography>
-            </li>
-          ))}
-        </ul>
+        {documentToReactComponents(props.ingredients)}
       </Card>
       {open && <RecipeDialog {...props} handleClose={() => setOpen(false)} />}
     </>

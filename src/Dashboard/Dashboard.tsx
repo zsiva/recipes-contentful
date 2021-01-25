@@ -9,7 +9,7 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { blue } from '@material-ui/core/colors';
-import RecipeCardList from './RecipeCardList';
+import RecipeCard from './RecipeCard';
 import { fetchContentData, IRecipeFields } from '../contentful/fetchData';
 
 const useStyles = makeStyles((theme) => ({
@@ -72,7 +72,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await fetchContentData('es');
+      const data = await fetchContentData('en-US');
       setRecipes(data);
       setIsLoading(false);
     };
@@ -103,20 +103,11 @@ const Dashboard = () => {
           </div>
         </Grid>
         <Grid container spacing={2}>
-          <Grid item xs={10}>
-            {recipesFiltered.map((recipe) => (
-              <Grid item xs={12} key={recipe.id}>
-                <RecipeCardList {...recipe} />
-              </Grid>
-            ))}
-          </Grid>
-          <Grid item xs={2}>
-            <ul className={classes.categoriesList}>
-              <li>Breakfast</li>
-              <li>Starter</li>
-              <li>Lunch</li>
-            </ul>
-          </Grid>
+          {recipesFiltered.map((recipe) => (
+            <Grid item xs={4} key={recipe.id}>
+              <RecipeCard {...recipe} />
+            </Grid>
+          ))}
         </Grid>
       </Grid>
     </Container>

@@ -6,6 +6,7 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 import RecipeDialog from './RecipeDialog';
 import { IRecipeFields } from '../contentful/fetchData';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 const useStyles = makeStyles((theme) => ({
   card: { display: 'flex', marginBottom: 20 },
@@ -45,7 +46,7 @@ export type IRecipeCardListProps = IRecipeFields;
 export default function RecipeCardList(props: IRecipeCardListProps) {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const splittedIngredients: string[] = props.ingredients.split(',');
+
   return (
     <>
       <Card className={classes.card}>
@@ -65,21 +66,7 @@ export default function RecipeCardList(props: IRecipeCardListProps) {
               {props.description}
             </Typography>
           </CardContent>
-          <div>
-            <ul className={classes.list}>
-              {splittedIngredients.map((ingredient: string, idx: number) => (
-                <li key={idx}>
-                  <Typography
-                    variant='body2'
-                    color='textSecondary'
-                    component='p'
-                  >
-                    {ingredient}
-                  </Typography>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {documentToReactComponents(props.ingredients)}
         </div>
       </Card>
       {open && <RecipeDialog {...props} handleClose={() => setOpen(false)} />}

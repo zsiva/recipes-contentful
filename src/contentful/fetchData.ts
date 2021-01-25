@@ -1,11 +1,12 @@
+import { Document } from '@contentful/rich-text-types';
 import { client } from './client';
 
 export type IRecipeFields = {
   id: string;
   name: string;
   categories: string[];
-  steps: string;
-  ingredients: string;
+  steps: Document;
+  ingredients: Document;
   cookTime: number;
   preparationTime: number;
   servings: number;
@@ -26,9 +27,9 @@ const toRecipeDto = (contentJson: any): IRecipeFields => {
   return {
     id: contentJson.fields?.id,
     name: contentJson.fields?.recipeLocal?.fields?.name,
-    categories: contentJson.fields.name,
+    categories: contentJson.fields?.categories,
     steps: contentJson.fields?.recipeLocal?.fields?.steps,
-    ingredients: '1234,1234',
+    ingredients: contentJson.fields?.recipeLocal?.fields?.ingredients,
     cookTime: contentJson.fields?.cookingTime,
     preparationTime: contentJson.fields?.preparationTime,
     servings: 12,

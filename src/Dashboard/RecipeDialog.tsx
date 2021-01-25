@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import { green } from '@material-ui/core/colors';
 import DialogContent from '@material-ui/core/DialogContent';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { IRecipeFields } from '../contentful/fetchData';
 
 type RecipeDialogProps = IRecipeFields & {
@@ -47,7 +48,6 @@ export default function RecipeDialog({
   preparationTime,
 }: RecipeDialogProps) {
   const classes = useStyles();
-  const splittedIngredients = ingredients.split(',');
 
   return (
     <Dialog open maxWidth='lg' onClose={handleClose}>
@@ -97,39 +97,19 @@ export default function RecipeDialog({
               Servings: 5
             </Typography>
             <Divider className={classes.divider} />
-
-            <div>
-              {categories.map((category: string, idx: number) => (
-                <Chip
-                  key={idx}
-                  className={classes.chip}
-                  size='small'
-                  label={category}
-                  color='primary'
-                />
-              ))}
-            </div>
+            <Chip
+              className={classes.chip}
+              size='small'
+              label={categories}
+              color='primary'
+            />
           </div>
         </div>
 
         <Divider className={classes.divider} />
-        <ul>
-          {splittedIngredients.map((ingredient: string, idx: number) => (
-            <li key={idx}>
-              <Typography variant='body2' color='textSecondary' component='p'>
-                {ingredient}
-              </Typography>
-            </li>
-          ))}
-        </ul>
+        {documentToReactComponents(ingredients)}
         <Divider className={classes.divider} />
-        <ol className={classes.list}>
-          {steps.split(';').map((step: string, idx: number) => (
-            <li key={idx}>
-              <Typography component='p'>{step}</Typography>
-            </li>
-          ))}
-        </ol>
+        {documentToReactComponents(steps)}
       </DialogContent>
     </Dialog>
   );
