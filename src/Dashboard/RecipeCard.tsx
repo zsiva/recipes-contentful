@@ -5,8 +5,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import { green } from '@material-ui/core/colors';
 import Chip from '@material-ui/core/Chip';
-import { Divider, Button } from '@material-ui/core';
-import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+import { Button, Typography } from '@material-ui/core';
 import { IRecipeFields } from '../contentful/fetchData';
 import RecipeDialog from './RecipeDialog';
 
@@ -27,7 +26,15 @@ const useStyles = makeStyles((theme) => ({
   },
   chip: { margin: 8, backgroundColor: green[500] },
   list: { overflow: 'hidden', maxHeight: 100 },
-  header: { backgroundColor: theme.palette.primary.main, color: '#fff' },
+  title: {
+    padding: 15,
+    fontWeight: 'bold',
+    '&:hover': {
+      transition: '0.3s ease-in-out',
+      color: theme.palette.primary.main,
+      cursor: 'pointer',
+    },
+  },
   card: { position: 'relative' },
 }));
 
@@ -38,13 +45,13 @@ export default function RecipeCard(props: IRecipeFields) {
   return (
     <>
       <Card className={classes.card}>
-        <CardHeader title={props.name} className={classes.header} />
         <CardMedia
           className={classes.media}
           image={props.headerImage}
           title={props.name}
           onClick={() => setOpen(true)}
         />
+        <Typography className={classes.title}>{props.name}</Typography>
         <Chip
           className={classes.chip}
           size='small'
@@ -61,8 +68,6 @@ export default function RecipeCard(props: IRecipeFields) {
             View
           </Button>
         </div>
-        <Divider />
-        {documentToReactComponents(props.ingredients)}
       </Card>
       {open && <RecipeDialog {...props} handleClose={() => setOpen(false)} />}
     </>
