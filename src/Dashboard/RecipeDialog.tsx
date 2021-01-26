@@ -50,7 +50,7 @@ export default function RecipeDialog({
   const classes = useStyles();
 
   return (
-    <Dialog open maxWidth='lg' onClose={handleClose}>
+    <Dialog open fullWidth onClose={handleClose}>
       <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton

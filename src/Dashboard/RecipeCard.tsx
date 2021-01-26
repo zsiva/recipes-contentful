@@ -16,11 +16,12 @@ const useStyles = makeStyles((theme) => ({
     '&:hover': {
       opacity: '0.5',
       cursor: 'pointer',
+      transition: '0.3s ease-in-out',
     },
   },
   rightButton: {
     float: 'right',
-    [theme.breakpoints.only('sm')]: {
+    [theme.breakpoints.down('xs')]: {
       float: 'none',
     },
   },
@@ -29,11 +30,6 @@ const useStyles = makeStyles((theme) => ({
   title: {
     padding: 15,
     fontWeight: 'bold',
-    '&:hover': {
-      transition: '0.3s ease-in-out',
-      color: theme.palette.primary.main,
-      cursor: 'pointer',
-    },
   },
   card: { position: 'relative' },
 }));

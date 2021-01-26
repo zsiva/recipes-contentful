@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     padding: '50px 0px 65px',
     backgroundImage: `url(${bannerImg})`,
+    backgroundPositionX: 'center',
   },
   title: {
     color: theme.palette.primary.main,
@@ -25,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
       fontSize: '1.5em',
     },
   },
+  input: { backgroundColor: 'white' },
 }));
 
 export default function Banner() {
@@ -42,7 +44,7 @@ export default function Banner() {
         >
           What would you like to eat?
         </Typography>
-        <FormControl fullWidth variant='outlined'>
+        <FormControl fullWidth variant='outlined' className={classes.input}>
           <OutlinedInput
             onChange={(e) => setSearchString(e.target.value)}
             placeholder='Search…'
