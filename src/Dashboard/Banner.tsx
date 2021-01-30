@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
@@ -8,6 +8,7 @@ import {
   OutlinedInput,
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
+import { RecipesContext } from './Recipes/RecipesProvider';
 
 const bannerImg =
   'https://images.ctfassets.net/b1kxdns6lgrg/6VaL3qyAnjPyx4nrxLHU0U/ae5600b1913d0cd5602bf523719c8ca0/banner3_1_.jpg';
@@ -30,8 +31,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Banner() {
+  const { setStringSearch } = useContext(RecipesContext);
   const classes = useStyles();
-  const [search, setSearchString] = useState('');
+  const setString = (value: string) => {
+    setStringSearch(value);
+  };
 
   return (
     <div className={classes.heroContent}>
@@ -46,7 +50,7 @@ export default function Banner() {
         </Typography>
         <FormControl fullWidth variant='outlined' className={classes.input}>
           <OutlinedInput
-            onChange={(e) => setSearchString(e.target.value)}
+            onChange={(e) => setString(e.target.value)}
             placeholder='Search…'
             id='outlined-search'
             startAdornment={

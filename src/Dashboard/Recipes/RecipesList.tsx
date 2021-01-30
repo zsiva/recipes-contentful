@@ -3,6 +3,7 @@ import { Grid, Container } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RecipeCard from './RecipeCard';
 import { RecipesContext } from './RecipesProvider';
+import { IRecipeFields } from '../../contentful/fetchData';
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -12,18 +13,22 @@ const useStyles = makeStyles(() => ({
 }));
 
 const RecipesList = () => {
-  const { recipes, fetchRecipes } = useContext(RecipesContext);
+  const { recipes, fetchRecipes, search } = useContext(RecipesContext);
   const classes = useStyles();
 
   useEffect(() => {
     fetchRecipes();
   }, [fetchRecipes]);
 
+  const recipesFiltered: IRecipeFields[] = recipes.filter((recipe) =>
+    recipe.name.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className={classes.container}>
       <Container>
         <Grid container spacing={2}>
-          {recipes.map((recipe) => (
+          {recipesFiltered.map((recipe) => (
             <Grid item sm={4} xs={6} key={recipe.id}>
               <RecipeCard {...recipe} />
             </Grid>
