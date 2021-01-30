@@ -24,11 +24,25 @@ const useStyles = makeStyles((theme) => ({
   title: {
     marginLeft: theme.spacing(2),
     flex: 1,
+    [theme.breakpoints.down('xs')]: { display: 'none' },
   },
-  headerImg: { maxWidth: '100%', height: 200 },
+  titleMob: {
+    [theme.breakpoints.up('sm')]: { display: 'none' },
+    [theme.breakpoints.down('xs')]: { textAlign: 'center', padding: 10 },
+  },
+
+  headerImg: {
+    maxWidth: '100%',
+    [theme.breakpoints.up('sm')]: { height: 200 },
+  },
   chip: { margin: 5, backgroundColor: green[500] },
   list: { margin: 10, paddingLeft: 20 },
-  info: { padding: '0px 15px' },
+  info: {
+    [theme.breakpoints.up('sm')]: {
+      padding: '0px 15px',
+      '& li': { display: 'inline', paddingRight: 10 },
+    },
+  },
   divider: { margin: '10px 0' },
   flexContainer: {
     display: 'flex',
@@ -46,11 +60,13 @@ export default function RecipeDialog({
   categories,
   cookTime,
   preparationTime,
+  foodType,
+  servings,
 }: RecipeDialogProps) {
   const classes = useStyles();
 
   return (
-    <Dialog open fullWidth onClose={handleClose}>
+    <Dialog open fullWidth maxWidth='md' onClose={handleClose}>
       <AppBar className={classes.appBar}>
         <Toolbar>
           <IconButton
@@ -67,13 +83,23 @@ export default function RecipeDialog({
         </Toolbar>
       </AppBar>
       <DialogContent>
+        <Typography variant='h6' className={classes.titleMob}>
+          {name}
+        </Typography>
         <div className={classes.flexContainer}>
           <img src={headerImage} alt={name} className={classes.headerImg} />
           <div className={classes.upperContent}>
-            <Typography className={classes.info} variant='body1'>
-              <strong>Cuisine:</strong> Spanish <strong>Course:</strong> Lunch{' '}
-              <strong>Level:</strong> : Advanced
-            </Typography>
+            <ul className={classes.info}>
+              <li>
+                <strong>Cuisine:</strong> Spanish
+              </li>
+              <li>
+                <strong>Course: </strong> {foodType}
+              </li>
+              <li>
+                <strong>Level:</strong> Advanced
+              </li>
+            </ul>
             <Divider className={classes.divider} />
             <Typography
               className={classes.info}
@@ -94,7 +120,7 @@ export default function RecipeDialog({
               variant='body2'
               color='textSecondary'
             >
-              Servings: 5
+              Servings: {servings}
             </Typography>
             <Divider className={classes.divider} />
             <Chip

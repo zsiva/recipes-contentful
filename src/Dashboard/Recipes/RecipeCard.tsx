@@ -2,9 +2,8 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
-import { green } from '@material-ui/core/colors';
 import Chip from '@material-ui/core/Chip';
-import { Button, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import { IRecipeFields } from '../../contentful/fetchData';
 import RecipeDialog from './RecipeDialog';
 
@@ -24,11 +23,18 @@ const useStyles = makeStyles((theme) => ({
       float: 'none',
     },
   },
-  chip: { margin: 8, backgroundColor: green[500] },
+  chip: { margin: 8 },
   list: { overflow: 'hidden', maxHeight: 100 },
   title: {
     padding: 15,
     fontWeight: 'bold',
+    borderBottom: '1px solid #dedde3',
+    textTransform: 'uppercase',
+    '&:hover': {
+      color: theme.palette.primary.main,
+      cursor: 'pointer',
+      transition: '0.3s ease-in-out',
+    },
   },
   card: { position: 'relative' },
 }));
@@ -46,23 +52,25 @@ export default function RecipeCard(props: IRecipeFields) {
           title={props.name}
           onClick={() => setOpen(true)}
         />
-        <Typography className={classes.title}>{props.name}</Typography>
+        <Typography className={classes.title} onClick={() => setOpen(true)}>
+          {props.name}
+        </Typography>
         <Chip
           className={classes.chip}
           size='small'
           label={props.categories}
           color='primary'
         />
-        <div className={classes.rightButton}>
-          <Button
-            className={classes.rightButton}
-            aria-label='edit recipe'
-            onClick={() => setOpen(true)}
-            color='primary'
-          >
-            View
-          </Button>
-        </div>
+        {props.foodType && (
+          <div className={classes.rightButton}>
+            <Chip
+              className={classes.chip}
+              size='small'
+              label={props.foodType}
+              color='secondary'
+            />
+          </div>
+        )}
       </Card>
       {open && <RecipeDialog {...props} handleClose={() => setOpen(false)} />}
     </>

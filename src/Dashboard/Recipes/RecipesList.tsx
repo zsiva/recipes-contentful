@@ -1,15 +1,29 @@
 import React, { useContext, useEffect } from 'react';
-import { Grid, Container } from '@material-ui/core';
+import { Grid, Container, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RecipeCard from './RecipeCard';
 import { RecipesContext } from './RecipesProvider';
 import { IRecipeFields } from '../../contentful/fetchData';
 import { LanguageContext } from '../../Language/LanguageProvider';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor: '#dedde3',
     padding: '40px 0',
+  },
+  title: {
+    color: theme.palette.primary.main,
+    fontSize: '2em',
+    marginBottom: 40,
+    textTransform: 'uppercase',
+    [theme.breakpoints.down('xs')]: {
+      fontSize: '1.5em',
+    },
+    borderBottom: `1px solid ${theme.palette.primary.main}`,
+    lineHeight: '0.1em',
+    '& span': {
+      background: '#fff',
+      padding: '0 10px',
+    },
   },
 }));
 
@@ -28,6 +42,14 @@ const RecipesList = () => {
 
   return (
     <div className={classes.container}>
+      <Typography
+        className={classes.title}
+        component='h1'
+        align='center'
+        gutterBottom
+      >
+        <span>Recipes</span>
+      </Typography>
       <Container>
         <Grid container spacing={2}>
           {recipesFiltered.map((recipe) => (
