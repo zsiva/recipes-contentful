@@ -11,7 +11,7 @@ import CloseIcon from '@material-ui/icons/Close';
 import { green } from '@material-ui/core/colors';
 import DialogContent from '@material-ui/core/DialogContent';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { IRecipeFields } from '../contentful/fetchData';
+import { IRecipeFields } from '../../contentful/fetchData';
 
 type RecipeDialogProps = IRecipeFields & {
   handleClose: () => void;

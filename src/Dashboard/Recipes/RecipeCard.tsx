@@ -1,12 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import { green } from '@material-ui/core/colors';
 import Chip from '@material-ui/core/Chip';
 import { Button, Typography } from '@material-ui/core';
-import { IRecipeFields } from '../contentful/fetchData';
+import { IRecipeFields } from '../../contentful/fetchData';
 import RecipeDialog from './RecipeDialog';
 
 const useStyles = makeStyles((theme) => ({
