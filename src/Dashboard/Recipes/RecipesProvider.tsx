@@ -4,7 +4,7 @@ import { IRecipeFields } from '../../contentful/fetchData';
 export type RecipesContextData = {
   recipes: IRecipeFields[];
   isLoading: boolean;
-  fetchRecipes: () => void;
+  fetchRecipes: (locale: string) => void;
   setStringSearch: (search: string) => void;
   search: string;
 };

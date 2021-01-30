@@ -7,12 +7,15 @@ export const useRecipesContextValue = (): RecipesContextData => {
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchRecipes = useCallback(async () => {
-    setIsLoading(true);
-    const data = await fetchContentData('en-US');
-    setRecipes(data);
-    setIsLoading(false);
-  }, [setRecipes]);
+  const fetchRecipes = useCallback(
+    async (locale: string) => {
+      setIsLoading(true);
+      const data = await fetchContentData(locale);
+      setRecipes(data);
+      setIsLoading(false);
+    },
+    [setRecipes]
+  );
 
   const setStringSearch = useCallback(
     async (searchString: string) => {

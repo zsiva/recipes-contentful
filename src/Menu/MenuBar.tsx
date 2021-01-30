@@ -2,6 +2,7 @@ import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import { Button, Container, makeStyles } from '@material-ui/core';
+import LanguageSelector from '../Language/LanguageSelector';
 
 const useStyles = makeStyles((theme) => ({
   bar: {
@@ -22,9 +23,10 @@ export default function MenuBar() {
             Recipes
           </Typography>
         </Button>
-        <Button color='inherit' className={classes.buttonRight}>
-          Create menu
-        </Button>
+        <Button color='inherit'>Create menu</Button>
+        <div className={classes.buttonRight}>
+          <LanguageSelector />
+        </div>
       </Container>
     </AppBar>
   );

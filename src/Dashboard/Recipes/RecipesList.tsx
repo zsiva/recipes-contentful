@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import RecipeCard from './RecipeCard';
 import { RecipesContext } from './RecipesProvider';
 import { IRecipeFields } from '../../contentful/fetchData';
+import { LanguageContext } from '../../Language/LanguageProvider';
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -14,11 +15,12 @@ const useStyles = makeStyles(() => ({
 
 const RecipesList = () => {
   const { recipes, fetchRecipes, search } = useContext(RecipesContext);
+  const { userLocale } = useContext(LanguageContext);
   const classes = useStyles();
 
   useEffect(() => {
-    fetchRecipes();
-  }, [fetchRecipes]);
+    fetchRecipes(userLocale);
+  }, [fetchRecipes, userLocale]);
 
   const recipesFiltered: IRecipeFields[] = recipes.filter((recipe) =>
     recipe.name.toLowerCase().includes(search.toLowerCase())
