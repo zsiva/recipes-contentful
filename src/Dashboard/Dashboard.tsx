@@ -1,50 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { Grid, CircularProgress, Container } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import RecipeCard from './RecipeCard';
-import { fetchContentData, IRecipeFields } from '../contentful/fetchData';
+import React from 'react';
 import Banner from './Banner';
-
-const useStyles = makeStyles((theme) => ({
-  container: {
-    backgroundColor: '#dedde3',
-    padding: '40px 0',
-  },
-}));
+import { RecipesContext } from './Recipes/RecipesProvider';
+import RecipesList from './Recipes/RecipesList';
+import { useRecipesContextValue } from './Recipes/useRecipesContextValue';
 
 const Dashboard = () => {
-  const [recipes, setRecipes] = useState<IRecipeFields[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const classes = useStyles();
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await fetchContentData('en-US');
-      setRecipes(data);
-      setIsLoading(false);
-    };
-
-    fetchData();
-  }, []);
-
-  if (isLoading) {
-    return <CircularProgress />;
-  }
+  const recipesContextValue = useRecipesContextValue();
   return (
-    <main>
-      <Banner />
-      <div className={classes.container}>
-        <Container>
-          <Grid container spacing={2}>
-            {recipes.map((recipe) => (
-              <Grid item sm={4} xs={6} key={recipe.id}>
-                <RecipeCard {...recipe} />
-              </Grid>
-            ))}
-          </Grid>
-        </Container>
-      </div>
-    </main>
+    <RecipesContext.Provider value={recipesContextValue}>
+      <main>
+        <Banner />
+        <RecipesList />
+      </main>
+    </RecipesContext.Provider>
   );
 };
 
