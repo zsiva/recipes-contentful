@@ -9,6 +9,7 @@ import {
 } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import { RecipesContext } from './Recipes/RecipesProvider';
+import { LanguageContext } from '../Language/LanguageProvider';
 
 const bannerImg =
   'https://images.ctfassets.net/b1kxdns6lgrg/6VaL3qyAnjPyx4nrxLHU0U/ae5600b1913d0cd5602bf523719c8ca0/banner3_1_.jpg';
@@ -32,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Banner() {
   const { setStringSearch } = useContext(RecipesContext);
+  const { localizedContent } = useContext(LanguageContext);
   const classes = useStyles();
   const setString = (value: string) => {
     setStringSearch(value);
@@ -46,7 +48,7 @@ export default function Banner() {
           align='center'
           gutterBottom
         >
-          What would you like to eat?
+          {localizedContent.bannerTitle}
         </Typography>
         <FormControl fullWidth variant='outlined' className={classes.input}>
           <OutlinedInput

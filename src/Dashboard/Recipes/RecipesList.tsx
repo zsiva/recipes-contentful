@@ -3,7 +3,7 @@ import { Grid, Container, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RecipeCard from './RecipeCard';
 import { RecipesContext } from './RecipesProvider';
-import { IRecipeFields } from '../../contentful/fetchData';
+import { IRecipeFields } from '../../utils/contentful/fetchData';
 import { LanguageContext } from '../../Language/LanguageProvider';
 
 const useStyles = makeStyles((theme) => ({
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RecipesList = () => {
   const { recipes, fetchRecipes, search } = useContext(RecipesContext);
-  const { userLocale } = useContext(LanguageContext);
+  const { userLocale, localizedContent } = useContext(LanguageContext);
   const classes = useStyles();
 
   useEffect(() => {
@@ -48,7 +48,7 @@ const RecipesList = () => {
         align='center'
         gutterBottom
       >
-        <span>Recipes</span>
+        <span>{localizedContent.recipes}</span>
       </Typography>
       <Container>
         <Grid container spacing={2}>

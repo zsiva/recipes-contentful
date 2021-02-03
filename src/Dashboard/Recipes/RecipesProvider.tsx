@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { IRecipeFields } from '../../contentful/fetchData';
+import { IRecipeFields } from '../../utils/contentful/fetchData';
 
 export type RecipesContextData = {
   recipes: IRecipeFields[];

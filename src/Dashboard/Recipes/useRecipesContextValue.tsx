@@ -1,6 +1,9 @@
 import { useState, useCallback, useMemo } from 'react';
 import { RecipesContextData } from './RecipesProvider';
-import { IRecipeFields, fetchContentData } from '../../contentful/fetchData';
+import {
+  IRecipeFields,
+  fetchContentData,
+} from '../../utils/contentful/fetchData';
 
 export const useRecipesContextValue = (): RecipesContextData => {
   const [recipes, setRecipes] = useState<IRecipeFields[]>([]);

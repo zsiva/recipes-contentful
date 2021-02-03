@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Dialog from '@material-ui/core/Dialog';
 import Chip from '@material-ui/core/Chip';
@@ -11,7 +11,8 @@ import CloseIcon from '@material-ui/icons/Close';
 import { green } from '@material-ui/core/colors';
 import DialogContent from '@material-ui/core/DialogContent';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { IRecipeFields } from '../../contentful/fetchData';
+import { IRecipeFields } from '../../utils/contentful/fetchData';
+import { LanguageContext } from '../../Language/LanguageProvider';
 
 type RecipeDialogProps = IRecipeFields & {
   handleClose: () => void;
@@ -64,6 +65,7 @@ export default function RecipeDialog({
   servings,
 }: RecipeDialogProps) {
   const classes = useStyles();
+  const { localizedContent } = useContext(LanguageContext);
 
   return (
     <Dialog open fullWidth maxWidth='md' onClose={handleClose}>
@@ -106,21 +108,21 @@ export default function RecipeDialog({
               variant='body2'
               color='textSecondary'
             >
-              Preparation time: {preparationTime}
+              {localizedContent.prepTime}: {preparationTime}
             </Typography>
             <Typography
               className={classes.info}
               variant='body2'
               color='textSecondary'
             >
-              Cooking time: {cookTime}
+              {localizedContent.cookTime}: {cookTime}
             </Typography>
             <Typography
               className={classes.info}
               variant='body2'
               color='textSecondary'
             >
-              Servings: {servings}
+              {localizedContent.servings}: {servings}
             </Typography>
             <Divider className={classes.divider} />
             <Chip
