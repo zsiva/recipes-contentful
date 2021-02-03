@@ -1,6 +1,11 @@
 import React, { useContext } from 'react';
 import { makeStyles, Select, MenuItem } from '@material-ui/core';
-import { LanguageContext } from './LanguageProvider';
+import { LanguageContext, Language } from './LanguageProvider';
+
+export const languageOptions = [
+  { key: 'en-US', value: 'English' },
+  { key: 'es', value: 'Español' },
+];
 
 const useStyles = makeStyles(() => ({
   select: { padding: '5px 10px', background: 'white', borderRadius: 5 },
@@ -10,7 +15,7 @@ const LanguageSelector = () => {
   const classes = useStyles();
   const { userLocale, setUserLocale } = useContext(LanguageContext);
 
-  const setLocale = (value: string) => {
+  const setLocale = (value: Language) => {
     setUserLocale(value);
   };
 
@@ -20,11 +25,12 @@ const LanguageSelector = () => {
       labelId='outlined-label'
       id='select-outlined'
       value={userLocale}
-      onChange={(event) => setLocale(event.target.value as string)}
+      onChange={(event) => setLocale(event.target.value as Language)}
       label='Language'
     >
-      <MenuItem value='en-US'>EN</MenuItem>
-      <MenuItem value='es'>ES</MenuItem>
+      {languageOptions.map((lan) => (
+        <MenuItem value={lan.key}>{lan.value}</MenuItem>
+      ))}
     </Select>
   );
 };
