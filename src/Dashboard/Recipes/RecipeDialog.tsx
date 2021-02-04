@@ -93,13 +93,10 @@ export default function RecipeDialog({
           <div className={classes.upperContent}>
             <ul className={classes.info}>
               <li>
-                <strong>Cuisine:</strong> Spanish
+                <strong>{localizedContent.foodType}: </strong> {foodType}
               </li>
               <li>
-                <strong>Course: </strong> {foodType}
-              </li>
-              <li>
-                <strong>Level:</strong> Advanced
+                <strong>{localizedContent.level}:</strong> Advanced
               </li>
             </ul>
             <Divider className={classes.divider} />
@@ -140,7 +137,7 @@ export default function RecipeDialog({
           variant='body1'
           color='textSecondary'
         >
-          Ingredients
+          {localizedContent.ingredients}
         </Typography>
         {documentToReactComponents(ingredients)}
         <Divider className={classes.divider} />
@@ -149,7 +146,7 @@ export default function RecipeDialog({
           variant='body1'
           color='textSecondary'
         >
-          Steps
+          {localizedContent.steps}
         </Typography>
         {documentToReactComponents(steps)}
       </DialogContent>

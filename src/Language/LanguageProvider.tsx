@@ -7,6 +7,11 @@ interface IContent {
   prepTime: string;
   cookTime: string;
   servings: string;
+  ingredients: string;
+  steps: string;
+  level: string;
+  foodType: string;
+  searchInput: string;
 }
 
 export type Language = 'es' | 'en-US';

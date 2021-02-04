@@ -53,7 +53,7 @@ export default function Banner() {
         <FormControl fullWidth variant='outlined' className={classes.input}>
           <OutlinedInput
             onChange={(e) => setString(e.target.value)}
-            placeholder='Search…'
+            placeholder={localizedContent.searchInput}
             id='outlined-search'
             startAdornment={
               <InputAdornment position='start'>
