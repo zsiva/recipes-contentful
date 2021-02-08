@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -6,6 +6,7 @@ import Chip from '@material-ui/core/Chip';
 import { Typography } from '@material-ui/core';
 import { IRecipeFields } from '../../utils/contentful/fetchData';
 import RecipeDialog from './RecipeDialog';
+import { LanguageContext } from '../../Language/LanguageProvider';
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -42,6 +43,7 @@ const useStyles = makeStyles((theme) => ({
 export default function RecipeCard(props: IRecipeFields) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const { localizedContent } = useContext(LanguageContext);
 
   return (
     <>
@@ -58,7 +60,7 @@ export default function RecipeCard(props: IRecipeFields) {
         <Chip
           className={classes.chip}
           size='small'
-          label={props.categories}
+          label={localizedContent[props.categories]}
           color='primary'
         />
         {props.foodType && (

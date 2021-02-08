@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RecipesList = () => {
-  const { recipes, fetchRecipes, search } = useContext(RecipesContext);
+  const { recipes, fetchRecipes, search, filters } = useContext(RecipesContext);
   const { userLocale, localizedContent } = useContext(LanguageContext);
   const classes = useStyles();
 
@@ -36,9 +36,14 @@ const RecipesList = () => {
     fetchRecipes(userLocale);
   }, [fetchRecipes, userLocale]);
 
-  const recipesFiltered: IRecipeFields[] = recipes.filter((recipe) =>
+  let recipesFiltered: IRecipeFields[] = recipes.filter((recipe) =>
     recipe.name.toLowerCase().includes(search.toLowerCase())
   );
+  if (filters.length) {
+    recipesFiltered = recipesFiltered.filter((recipe) =>
+      filters.includes(recipe.categories.toLowerCase())
+    );
+  }
 
   return (
     <div className={classes.container}>
