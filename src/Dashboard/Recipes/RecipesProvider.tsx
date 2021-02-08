@@ -7,6 +7,8 @@ export type RecipesContextData = {
   fetchRecipes: (locale: string) => void;
   setStringSearch: (search: string) => void;
   search: string;
+  toggleFilters: (item: string) => void;
+  filters: string[];
 };
 
 export const recipesDefaultValue: RecipesContextData = {
@@ -15,6 +17,8 @@ export const recipesDefaultValue: RecipesContextData = {
   fetchRecipes: () => null,
   setStringSearch: () => null,
   search: '',
+  toggleFilters: () => null,
+  filters: [],
 };
 
 export const RecipesContext = createContext<RecipesContextData>(
