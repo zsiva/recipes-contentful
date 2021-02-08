@@ -29,7 +29,9 @@ const LanguageSelector = () => {
       label='Language'
     >
       {languageOptions.map((lan) => (
-        <MenuItem value={lan.key}>{lan.value}</MenuItem>
+        <MenuItem key={lan.key} value={lan.key}>
+          {lan.value}
+        </MenuItem>
       ))}
     </Select>
   );

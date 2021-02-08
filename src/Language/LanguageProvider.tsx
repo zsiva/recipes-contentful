@@ -27,9 +27,9 @@ export type LanguageContextData = {
 };
 
 export const languageDefaultValue: LanguageContextData = {
-  userLocale: 'en-US',
+  userLocale: 'es',
   setUserLocale: () => null,
-  localizedContent: localizedContent['en-US'],
+  localizedContent: localizedContent['es'],
 };
 
 export const LanguageContext = createContext<LanguageContextData>(
@@ -38,7 +38,7 @@ export const LanguageContext = createContext<LanguageContextData>(
 
 export const useLanguageContextValue = (): LanguageContextData => {
   const [userLocale, setUserLanguage] = useState(
-    languageDefaultValue.userLocale || 'en-US'
+    languageDefaultValue.userLocale || 'es'
   );
 
   const setUserLocale = useCallback(
