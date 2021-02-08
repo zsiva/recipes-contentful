@@ -4,7 +4,7 @@ import { client } from './client';
 export type IRecipeFields = {
   id: string;
   name: string;
-  categories: string[];
+  categories: string;
   steps: Document;
   ingredients: Document;
   cookTime: number;
@@ -33,7 +33,7 @@ const toRecipeDto = (contentJson: any): IRecipeFields => {
     ingredients: contentJson.fields?.recipeLocal?.fields?.ingredients,
     cookTime: contentJson.fields?.cookingTime,
     preparationTime: contentJson.fields?.preparationTime,
-    servings: 12,
+    servings: contentJson.fields?.servings,
     rating: 12,
     author: 'test',
     headerImage:

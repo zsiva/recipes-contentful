@@ -10,6 +10,9 @@ export const localizedContent = {
     level: 'Level',
     foodType: 'Food type',
     searchInput: 'Search...',
+    filters: 'Filters',
+    vegan: 'Vegan',
+    vegetarian: 'Vegetarian',
   },
   es: {
     bannerTitle: '¿Qué te apetece comer?',
@@ -22,5 +25,8 @@ export const localizedContent = {
     level: 'Nivel',
     foodType: 'Tipo de comida',
     searchInput: 'Busca...',
+    filters: 'Filtros',
+    vegan: 'Vegano',
+    vegetarian: 'Vegetariano',
   },
 };
