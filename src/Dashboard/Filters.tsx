@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
       padding: '0 10px',
     },
   },
+  label: { lineHeight: '2rem', marginLeft: 20, fontWeight: 'bold' },
 }));
 
 export default function Filters() {
@@ -47,6 +48,9 @@ export default function Filters() {
         <span>{localizedContent.filters}</span>
       </Typography>
       <div className={classes.filters}>
+        <Typography className={classes.label}>
+          {localizedContent.foodType}
+        </Typography>
         <Chip
           label={localizedContent.vegetarian}
           color={filters.includes('vegetarian') ? 'primary' : 'default'}
@@ -57,6 +61,9 @@ export default function Filters() {
           color={filters.includes('vegan') ? 'primary' : 'default'}
           onClick={() => toggleFilters('vegan')}
         />
+        <Typography className={classes.label}>
+          {localizedContent.category}
+        </Typography>
         <Chip
           label={localizedContent.breakfast}
           color={filters.includes('breakfast') ? 'secondary' : 'default'}

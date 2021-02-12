@@ -24,8 +24,8 @@ export const useRecipesContextValue = (): RecipesContextData => {
   const toggleFilters = useCallback(
     (item: string) => {
       const currentFilters = filters.includes(item)
-        ? filters.filter((i) => i !== item) // remove item
-        : [...filters, item]; // add item
+        ? filters.filter((i) => i !== item)
+        : [...filters, item];
       setFilters(currentFilters);
     },
     [setFilters, filters]
