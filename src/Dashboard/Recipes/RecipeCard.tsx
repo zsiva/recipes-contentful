@@ -68,7 +68,7 @@ export default function RecipeCard(props: IRecipeFields) {
             <Chip
               className={classes.chip}
               size='small'
-              label={props.foodType}
+              label={localizedContent[props.foodType]}
               color='secondary'
             />
           </div>

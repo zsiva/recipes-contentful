@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Chip } from '@material-ui/core';
-import FreeBreakfast from '@material-ui/icons/FreeBreakfast';
 import { RecipesContext } from './Recipes/RecipesProvider';
 import { LanguageContext } from '../Language/LanguageProvider';
-import { Fastfood } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   filters: {
@@ -59,8 +57,14 @@ export default function Filters() {
           color={filters.includes('vegan') ? 'primary' : 'default'}
           onClick={() => toggleFilters('vegan')}
         />
-        <Chip label='Breakfast' color='default' icon={<FreeBreakfast />} />
-        <Chip label='Lunch' color='default' icon={<Fastfood />} />
+        <Chip
+          label={localizedContent.breakfast}
+          color={filters.includes('breakfast') ? 'secondary' : 'default'}
+        />
+        <Chip
+          label={localizedContent.lunch}
+          color={filters.includes('lunch') ? 'secondary' : 'default'}
+        />
       </div>
     </div>
   );

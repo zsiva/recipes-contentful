@@ -13,6 +13,10 @@ export const localizedContent = {
     filters: 'Filters',
     vegan: 'Vegan',
     vegetarian: 'Vegetarian',
+    drinks: 'Drinks',
+    lunch: 'Lunch',
+    breakfast: 'Breakfast',
+    dessert: 'Dessert',
   },
   es: {
     bannerTitle: '¿Qué te apetece comer?',
@@ -28,5 +32,9 @@ export const localizedContent = {
     filters: 'Filtros',
     vegan: 'Vegano',
     vegetarian: 'Vegetariano',
+    drinks: 'Bebidas',
+    lunch: 'Comida',
+    breakfast: 'Desayuno',
+    dessert: 'Postre',
   },
 };
