@@ -8,7 +8,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
-import { green } from '@material-ui/core/colors';
 import DialogContent from '@material-ui/core/DialogContent';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { IRecipeFields } from '../../utils/contentful/fetchData';
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
     maxWidth: '100%',
     [theme.breakpoints.up('sm')]: { height: 200 },
   },
-  chip: { margin: 5, backgroundColor: green[500] },
+  chip: { margin: 5 },
   list: { margin: 10, paddingLeft: 20 },
   info: {
     [theme.breakpoints.up('sm')]: {
@@ -93,10 +92,8 @@ export default function RecipeDialog({
           <div className={classes.upperContent}>
             <ul className={classes.info}>
               <li>
-                <strong>{localizedContent.foodType}: </strong> {foodType}
-              </li>
-              <li>
-                <strong>{localizedContent.level}:</strong> Advanced
+                <strong>{localizedContent.foodType}: </strong>{' '}
+                {localizedContent[foodType]}
               </li>
             </ul>
             <Divider className={classes.divider} />
@@ -114,18 +111,20 @@ export default function RecipeDialog({
             >
               {localizedContent.cookTime}: {cookTime}
             </Typography>
-            <Typography
-              className={classes.info}
-              variant='body2'
-              color='textSecondary'
-            >
-              {localizedContent.servings}: {servings}
-            </Typography>
+            {servings && (
+              <Typography
+                className={classes.info}
+                variant='body2'
+                color='textSecondary'
+              >
+                {localizedContent.servings}: {servings}
+              </Typography>
+            )}
             <Divider className={classes.divider} />
             <Chip
               className={classes.chip}
               size='small'
-              label={categories}
+              label={localizedContent[categories]}
               color='primary'
             />
           </div>

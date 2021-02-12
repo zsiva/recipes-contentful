@@ -34,7 +34,7 @@ export const localizedContent = {
     vegan: 'Vegano',
     vegetarian: 'Vegetariano',
     drinks: 'Bebidas',
-    lunch: 'Comida',
+    lunch: 'Almuerzo',
     breakfast: 'Desayuno',
     dessert: 'Postre',
     category: 'Categoría',

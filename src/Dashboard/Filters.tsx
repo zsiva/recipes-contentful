@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Typography, Chip } from '@material-ui/core';
+import { Typography, Chip, Grid, Container } from '@material-ui/core';
 import { RecipesContext } from './Recipes/RecipesProvider';
 import { LanguageContext } from '../Language/LanguageProvider';
 
@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
       margin: theme.spacing(0.5),
     },
   },
-  filtersContainer: { padding: '50px 0px 15px' },
+  filtersContainer: { paddingTop: 50, paddingBottom: 15 },
   title: {
     color: theme.palette.primary.main,
     fontSize: '2em',
@@ -38,7 +38,7 @@ export default function Filters() {
   const classes = useStyles();
 
   return (
-    <div className={classes.filtersContainer}>
+    <Container className={classes.filtersContainer}>
       <Typography
         className={classes.title}
         component='h1'
@@ -47,32 +47,52 @@ export default function Filters() {
       >
         <span>{localizedContent.filters}</span>
       </Typography>
-      <div className={classes.filters}>
-        <Typography className={classes.label}>
-          {localizedContent.foodType}
-        </Typography>
-        <Chip
-          label={localizedContent.vegetarian}
-          color={filters.includes('vegetarian') ? 'primary' : 'default'}
-          onClick={() => toggleFilters('vegetarian')}
-        />
-        <Chip
-          label={localizedContent.vegan}
-          color={filters.includes('vegan') ? 'primary' : 'default'}
-          onClick={() => toggleFilters('vegan')}
-        />
-        <Typography className={classes.label}>
-          {localizedContent.category}
-        </Typography>
-        <Chip
-          label={localizedContent.breakfast}
-          color={filters.includes('breakfast') ? 'secondary' : 'default'}
-        />
-        <Chip
-          label={localizedContent.lunch}
-          color={filters.includes('lunch') ? 'secondary' : 'default'}
-        />
-      </div>
-    </div>
+      <Grid container spacing={2}>
+        <Grid item sm={6} xs={12}>
+          <div className={classes.filters}>
+            <Typography className={classes.label}>
+              {localizedContent.foodType}
+            </Typography>
+            <Chip
+              label={localizedContent.vegetarian}
+              color={filters.includes('vegetarian') ? 'primary' : 'default'}
+              onClick={() => toggleFilters('vegetarian')}
+            />
+            <Chip
+              label={localizedContent.vegan}
+              color={filters.includes('vegan') ? 'primary' : 'default'}
+              onClick={() => toggleFilters('vegan')}
+            />
+          </div>
+        </Grid>
+        <Grid item sm={6} xs={12}>
+          <div className={classes.filters}>
+            <Typography className={classes.label}>
+              {localizedContent.category}
+            </Typography>
+            <Chip
+              label={localizedContent.breakfast}
+              color={filters.includes('breakfast') ? 'secondary' : 'default'}
+              disabled
+            />
+            <Chip
+              label={localizedContent.lunch}
+              color={filters.includes('lunch') ? 'secondary' : 'default'}
+              disabled
+            />
+            <Chip
+              label={localizedContent.drinks}
+              color={filters.includes('drinks') ? 'secondary' : 'default'}
+              disabled
+            />
+            <Chip
+              label={localizedContent.dessert}
+              color={filters.includes('dessert') ? 'secondary' : 'default'}
+              disabled
+            />
+          </div>
+        </Grid>
+      </Grid>
+    </Container>
   );
 }
