@@ -23,7 +23,14 @@ const useStyles = makeStyles((theme) => ({
       flexWrap: 'wrap',
     },
   },
-  label: { lineHeight: '3rem', marginRight: 10, fontWeight: 'bold' },
+  label: {
+    lineHeight: '3rem',
+    marginRight: 10,
+    fontWeight: 'bold',
+    [theme.breakpoints.down('xs')]: {
+      display: 'none',
+    },
+  },
 }));
 
 export default function FiltersFoodType() {

@@ -1,13 +1,7 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Typography,
-  Chip,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-} from '@material-ui/core';
-import { Cake, Fastfood, FreeBreakfast, LocalBar } from '@material-ui/icons';
+import { Typography, Chip } from '@material-ui/core';
+import { Cake, Fastfood, LocalBar } from '@material-ui/icons';
 import { FiltersContext } from './FiltersProvider';
 import { LanguageContext } from '../../Language/LanguageProvider';
 

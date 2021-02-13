@@ -10,6 +10,7 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { LanguageContext } from '../../Language/LanguageProvider';
 import Filters from './Filters';
+import FiltersFoodType from './FiltersFoodType';
 
 const useStyles = makeStyles((theme) => ({
   filtersContainer: { paddingTop: 50, paddingBottom: 15 },
@@ -68,11 +69,11 @@ export default function FiltersContainer() {
           id='panel1a-header'
         >
           <Typography align='center' gutterBottom>
-            <span>{localizedContent.filters}</span>
+            <span>{localizedContent.foodType}</span>
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <Filters />
+          <FiltersFoodType />
         </AccordionDetails>
       </Accordion>
       <div className={classes.filtersBlock}>
