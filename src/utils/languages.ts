@@ -18,6 +18,7 @@ export const localizedContent = {
     breakfast: 'Breakfast',
     dessert: 'Dessert',
     category: 'Category',
+    clear: 'Clear',
   },
   es: {
     bannerTitle: '¿Qué te apetece comer?',
@@ -38,5 +39,6 @@ export const localizedContent = {
     breakfast: 'Desayuno',
     dessert: 'Postre',
     category: 'Categoría',
+    clear: 'Borrar',
   },
 };

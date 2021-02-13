@@ -5,6 +5,7 @@ import RecipeCard from './RecipeCard';
 import { RecipesContext } from './RecipesProvider';
 import { IRecipeFields } from '../../utils/contentful/fetchData';
 import { LanguageContext } from '../../Language/LanguageProvider';
+import { FiltersContext } from '../Filters/FiltersProvider';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -28,7 +29,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RecipesList = () => {
-  const { recipes, fetchRecipes, search, filters } = useContext(RecipesContext);
+  const { recipes, fetchRecipes, search } = useContext(RecipesContext);
+  const { filter } = useContext(FiltersContext);
   const { userLocale, localizedContent } = useContext(LanguageContext);
   const classes = useStyles();
 
@@ -39,9 +41,9 @@ const RecipesList = () => {
   let recipesFiltered: IRecipeFields[] = recipes.filter((recipe) =>
     recipe.name.toLowerCase().includes(search.toLowerCase())
   );
-  if (filters.length) {
-    recipesFiltered = recipesFiltered.filter((recipe) =>
-      filters.includes(recipe.categories.toLowerCase())
+  if (filter !== '') {
+    recipesFiltered = recipesFiltered.filter(
+      (recipe) => filter === recipe.categories.toLowerCase()
     );
   }
 
