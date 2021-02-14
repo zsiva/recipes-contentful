@@ -4,7 +4,7 @@ import { client } from './client';
 export type IRecipeFields = {
   id: string;
   name: string;
-  categories: string;
+  dietType: string;
   steps: Document;
   ingredients: Document;
   cookTime: number;
@@ -14,7 +14,7 @@ export type IRecipeFields = {
   author: string;
   headerImage: string;
   description: string;
-  foodType: string;
+  mealType: string;
 };
 
 export type IContentfulFields = {
@@ -28,7 +28,7 @@ const toRecipeDto = (contentJson: any): IRecipeFields => {
   return {
     id: contentJson.fields?.id,
     name: contentJson.fields?.recipeLocal?.fields?.name,
-    categories: contentJson.fields?.categories,
+    dietType: contentJson.fields?.dietType,
     steps: contentJson.fields?.recipeLocal?.fields?.steps,
     ingredients: contentJson.fields?.recipeLocal?.fields?.ingredients,
     cookTime: contentJson.fields?.cookingTime,
@@ -41,7 +41,7 @@ const toRecipeDto = (contentJson: any): IRecipeFields => {
       'https://images.ctfassets.net/b1kxdns6lgrg/4qFA48bGDBUeRrCOslleI1/d83cd7b47c260fb35c5c45ece5239e98/images?h=250',
     description:
       'La tradicional receta de tortilla de patatas o tortilla española, un plato básico de la cocina española a base de patatas, huevo y cebolla.',
-    foodType: contentJson.fields?.foodType,
+    mealType: contentJson.fields?.mealType,
   };
 };
 

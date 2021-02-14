@@ -7,12 +7,13 @@ import {
   RadioGroup,
 } from '@material-ui/core';
 import { Eco, HighlightOff } from '@material-ui/icons';
+import { green } from '@material-ui/core/colors';
 import { FiltersContext } from './FiltersProvider';
 import { LanguageContext } from '../../Language/LanguageProvider';
 
-const foodType = [
-  { label: 'vegan', icon: <Eco /> },
-  { label: 'vegetarian', icon: <Eco /> },
+export const dietTypes = [
+  { label: 'vegan', icon: <Eco />, color: green[400] },
+  { label: 'vegetarian', icon: <Eco />, color: green[600] },
 ];
 
 const useStyles = makeStyles((theme) => ({
@@ -33,7 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function FiltersFoodType() {
+export default function FiltersDietType() {
   const { toggleFilters, filter } = useContext(FiltersContext);
   const { localizedContent } = useContext(LanguageContext);
   const classes = useStyles();
@@ -41,27 +42,27 @@ export default function FiltersFoodType() {
   return (
     <div className={classes.filters}>
       <Typography className={classes.label}>
-        {localizedContent.foodType}
+        {localizedContent.dietType}
       </Typography>
       <RadioGroup
         row
-        aria-label='food-type-filter'
-        name='food-type-filter'
+        aria-label='food-diet-filter'
+        name='food-diet-filter'
         value={filter}
       >
-        {foodType.map((food) => (
+        {dietTypes.map((diet) => (
           <FormControlLabel
-            key={food.label}
-            value={food.label}
+            key={diet.label}
+            value={diet.label}
             control={
               <Radio
-                checked={filter === food.label}
+                checked={filter === diet.label}
                 color='primary'
-                icon={food.icon}
-                onChange={() => toggleFilters(food.label)}
+                icon={diet.icon}
+                onChange={() => toggleFilters(diet.label)}
               />
             }
-            label={localizedContent[food.label]}
+            label={localizedContent[diet.label]}
           />
         ))}
         <FormControlLabel

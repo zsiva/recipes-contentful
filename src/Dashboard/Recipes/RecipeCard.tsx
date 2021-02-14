@@ -7,6 +7,7 @@ import { Typography } from '@material-ui/core';
 import { IRecipeFields } from '../../utils/contentful/fetchData';
 import RecipeDialog from './RecipeDialog';
 import { LanguageContext } from '../../Language/LanguageProvider';
+import { dietTypes } from '../Filters/FiltersDietType';
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -44,6 +45,9 @@ export default function RecipeCard(props: IRecipeFields) {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
   const { localizedContent } = useContext(LanguageContext);
+  const currentDietType = dietTypes.find(
+    (diet) => diet.label === props.dietType
+  );
 
   return (
     <>
@@ -60,16 +64,18 @@ export default function RecipeCard(props: IRecipeFields) {
         <Chip
           className={classes.chip}
           size='small'
-          label={localizedContent[props.categories]}
+          label={localizedContent[props.dietType]}
+          icon={currentDietType?.icon}
           color='primary'
+          style={{ backgroundColor: currentDietType?.color }}
         />
-        {props.foodType && (
+        {props.mealType && (
           <div className={classes.rightButton}>
             <Chip
               className={classes.chip}
               size='small'
-              label={localizedContent[props.foodType]}
-              color='secondary'
+              label={localizedContent[props.mealType]}
+              color='primary'
             />
           </div>
         )}

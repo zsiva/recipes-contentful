@@ -19,6 +19,7 @@ export const localizedContent = {
     dessert: 'Dessert',
     category: 'Category',
     clear: 'Clear',
+    dietType: 'Diet type',
   },
   es: {
     bannerTitle: '¿Qué te apetece comer?',
@@ -40,5 +41,6 @@ export const localizedContent = {
     dessert: 'Postre',
     category: 'Categoría',
     clear: 'Borrar',
+    dietType: 'Tipo de dieta',
   },
 };

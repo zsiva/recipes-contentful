@@ -10,7 +10,7 @@ import {
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import { LanguageContext } from '../../Language/LanguageProvider';
 import Filters from './Filters';
-import FiltersFoodType from './FiltersFoodType';
+import FiltersDietType from './FiltersDietType';
 
 const useStyles = makeStyles((theme) => ({
   filtersContainer: { paddingTop: 50, paddingBottom: 15 },
@@ -65,15 +65,15 @@ export default function FiltersContainer() {
       <Accordion className={classes.accordion}>
         <AccordionSummary
           expandIcon={<ExpandMoreIcon />}
-          aria-controls='panel1a-content'
-          id='panel1a-header'
+          aria-controls='mobile-filters'
+          id='mobile-filters'
         >
           <Typography align='center' gutterBottom>
-            <span>{localizedContent.foodType}</span>
+            <span>{localizedContent.dietType}</span>
           </Typography>
         </AccordionSummary>
         <AccordionDetails>
-          <FiltersFoodType />
+          <FiltersDietType />
         </AccordionDetails>
       </Accordion>
       <div className={classes.filtersBlock}>

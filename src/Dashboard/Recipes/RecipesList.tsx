@@ -43,7 +43,7 @@ const RecipesList = () => {
   );
   if (filter !== '') {
     recipesFiltered = recipesFiltered.filter(
-      (recipe) => filter === recipe.categories.toLowerCase()
+      (recipe) => filter === recipe.dietType.toLowerCase()
     );
   }
 

@@ -57,10 +57,10 @@ export default function RecipeDialog({
   ingredients,
   headerImage,
   steps,
-  categories,
+  dietType,
   cookTime,
   preparationTime,
-  foodType,
+  mealType,
   servings,
 }: RecipeDialogProps) {
   const classes = useStyles();
@@ -93,7 +93,7 @@ export default function RecipeDialog({
             <ul className={classes.info}>
               <li>
                 <strong>{localizedContent.foodType}: </strong>{' '}
-                {localizedContent[foodType]}
+                {localizedContent[mealType]}
               </li>
             </ul>
             <Divider className={classes.divider} />
@@ -124,7 +124,7 @@ export default function RecipeDialog({
             <Chip
               className={classes.chip}
               size='small'
-              label={localizedContent[categories]}
+              label={localizedContent[dietType]}
               color='primary'
             />
           </div>

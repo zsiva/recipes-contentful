@@ -24,6 +24,7 @@ const categories = [
   { label: 'drinks', icon: <LocalBar /> },
   { label: 'dessert', icon: <Cake /> },
 ];
+
 export default function FiltersCategory() {
   const { filter } = useContext(FiltersContext);
   const { localizedContent } = useContext(LanguageContext);
@@ -36,6 +37,7 @@ export default function FiltersCategory() {
       </Typography>
       {categories.map((cat) => (
         <Chip
+          key={cat.label}
           label={localizedContent[cat.label]}
           color={filter === cat.label ? 'secondary' : 'default'}
           disabled
