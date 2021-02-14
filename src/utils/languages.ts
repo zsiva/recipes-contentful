@@ -20,6 +20,7 @@ export const localizedContent = {
     category: 'Category',
     clear: 'Clear',
     dietType: 'Diet type',
+    mealType: 'Meal type',
   },
   es: {
     bannerTitle: '¿Qué te apetece comer?',
@@ -42,5 +43,6 @@ export const localizedContent = {
     category: 'Categoría',
     clear: 'Borrar',
     dietType: 'Tipo de dieta',
+    mealType: 'Tipo de comida',
   },
 };

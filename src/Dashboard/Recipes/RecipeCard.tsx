@@ -8,6 +8,7 @@ import { IRecipeFields } from '../../utils/contentful/fetchData';
 import RecipeDialog from './RecipeDialog';
 import { LanguageContext } from '../../Language/LanguageProvider';
 import { dietTypes } from '../Filters/FiltersDietType';
+import { mealTypes } from '../Filters/FiltersMealType';
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -49,6 +50,10 @@ export default function RecipeCard(props: IRecipeFields) {
     (diet) => diet.label === props.dietType
   );
 
+  const currentMealType = mealTypes.find(
+    (meal) => meal.label === props.mealType
+  );
+
   return (
     <>
       <Card className={classes.card}>
@@ -76,6 +81,7 @@ export default function RecipeCard(props: IRecipeFields) {
               size='small'
               label={localizedContent[props.mealType]}
               color='primary'
+              icon={currentMealType?.icon}
             />
           </div>
         )}

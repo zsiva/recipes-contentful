@@ -19,13 +19,13 @@ const useStyles = makeStyles((theme) => ({
   label: { lineHeight: '2rem', marginLeft: 20, fontWeight: 'bold' },
 }));
 
-const categories = [
+export const mealTypes = [
   { label: 'lunch', icon: <Fastfood /> },
   { label: 'drinks', icon: <LocalBar /> },
   { label: 'dessert', icon: <Cake /> },
 ];
 
-export default function FiltersCategory() {
+export default function FiltersMealType() {
   const { filter } = useContext(FiltersContext);
   const { localizedContent } = useContext(LanguageContext);
   const classes = useStyles();
@@ -33,15 +33,15 @@ export default function FiltersCategory() {
   return (
     <div className={classes.filters}>
       <Typography className={classes.label}>
-        {localizedContent.category}
+        {localizedContent.mealType}
       </Typography>
-      {categories.map((cat) => (
+      {mealTypes.map((meal) => (
         <Chip
-          key={cat.label}
-          label={localizedContent[cat.label]}
-          color={filter === cat.label ? 'secondary' : 'default'}
+          key={meal.label}
+          label={localizedContent[meal.label]}
+          color={filter === meal.label ? 'secondary' : 'default'}
           disabled
-          icon={cat.icon}
+          icon={meal.icon}
         />
       ))}
     </div>

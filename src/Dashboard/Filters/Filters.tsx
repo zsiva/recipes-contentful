@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
 import FiltersDietType from './FiltersDietType';
-import FiltersCategory from './FiltersCategory';
+import FiltersMealType from './FiltersMealType';
 
 export default function Filters() {
   return (
@@ -10,7 +10,7 @@ export default function Filters() {
         <FiltersDietType />
       </Grid>
       <Grid item sm={6} xs={12}>
-        <FiltersCategory />
+        <FiltersMealType />
       </Grid>
     </Grid>
   );
