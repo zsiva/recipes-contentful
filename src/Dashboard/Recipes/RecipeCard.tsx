@@ -4,8 +4,8 @@ import Card from '@material-ui/core/Card';
 import CardMedia from '@material-ui/core/CardMedia';
 import Chip from '@material-ui/core/Chip';
 import { Typography } from '@material-ui/core';
+import { useHistory } from 'react-router-dom';
 import { IRecipeFields } from '../../utils/contentful/fetchData';
-import RecipeDialog from './RecipeDialog';
 import { LanguageContext } from '../../Language/LanguageProvider';
 import { dietTypes } from '../Filters/FiltersDietType';
 import { mealTypes } from '../Filters/FiltersMealType';
@@ -44,8 +44,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function RecipeCard(props: IRecipeFields) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
   const { localizedContent } = useContext(LanguageContext);
+  const history = useHistory();
   const currentDietType = dietTypes.find(
     (diet) => diet.label === props.dietType
   );
@@ -61,9 +61,12 @@ export default function RecipeCard(props: IRecipeFields) {
           className={classes.media}
           image={props.headerImage}
           title={props.name}
-          onClick={() => setOpen(true)}
+          onClick={() => history.push(`/${props.slug}`)}
         />
-        <Typography className={classes.title} onClick={() => setOpen(true)}>
+        <Typography
+          className={classes.title}
+          onClick={() => history.push(`/${props.slug}`)}
+        >
           {props.name}
         </Typography>
         <Chip
@@ -86,7 +89,6 @@ export default function RecipeCard(props: IRecipeFields) {
           </div>
         )}
       </Card>
-      {open && <RecipeDialog {...props} handleClose={() => setOpen(false)} />}
     </>
   );
 }
