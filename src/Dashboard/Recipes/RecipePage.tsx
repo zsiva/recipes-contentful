@@ -1,45 +1,39 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
-import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { useHistory, useParams } from 'react-router-dom';
 import { LanguageContext } from '../../Language/LanguageProvider';
 import { RecipesContext } from './RecipesProvider';
-import { Button } from '@material-ui/core';
+import ListItemIcon from '../../shared/ListItemIcon';
+import DividerBlue from '../../shared/DividerBlue';
 
 const useStyles = makeStyles((theme) => ({
   title: {
-    marginLeft: theme.spacing(2),
-    flex: 1,
+    margin: '20px 0 30px',
     [theme.breakpoints.down('xs')]: { display: 'none' },
   },
   titleMob: {
     [theme.breakpoints.up('sm')]: { display: 'none' },
     [theme.breakpoints.down('xs')]: { textAlign: 'center', padding: 10 },
   },
-
   headerImg: {
     maxWidth: '100%',
-    [theme.breakpoints.up('sm')]: { height: 200 },
+    [theme.breakpoints.up('sm')]: { height: 250 },
   },
   chip: { margin: 5 },
-  list: { margin: 10, paddingLeft: 20 },
-  info: {
-    [theme.breakpoints.up('sm')]: {
-      padding: '0px 15px',
-      '& li': { display: 'inline', paddingRight: 10 },
-    },
-  },
-  divider: { margin: '10px 0' },
   flexContainer: {
     display: 'flex',
     [theme.breakpoints.down('xs')]: { flexDirection: 'column' },
   },
-  upperContent: { padding: 10 },
+  upperContent: {
+    [theme.breakpoints.up('sm')]: { marginLeft: 30 },
+  },
   notFoundContainer: { paddingTop: 30, textAlign: 'center' },
   backButton: { marginTop: 20 },
+  container: { padding: 24 },
 }));
 
 interface RecipeRouteParams {
@@ -71,8 +65,8 @@ export default function RecipePage() {
   }
 
   return (
-    <main>
-      <Typography variant='h6' className={classes.titleMob}>
+    <main className={classes.container}>
+      <Typography variant='h5' className={classes.titleMob}>
         {selectedRecipe.name}
       </Typography>
       <div className={classes.flexContainer}>
@@ -82,61 +76,45 @@ export default function RecipePage() {
           className={classes.headerImg}
         />
         <div className={classes.upperContent}>
-          <ul className={classes.info}>
-            <li>
-              <strong>{localizedContent.foodType}: </strong>{' '}
-              {localizedContent[selectedRecipe.mealType]}
-            </li>
-          </ul>
-          <Divider className={classes.divider} />
-          <Typography
-            className={classes.info}
-            variant='body2'
-            color='textSecondary'
-          >
-            {localizedContent.prepTime}: {selectedRecipe.preparationTime}
-          </Typography>
-          <Typography
-            className={classes.info}
-            variant='body2'
-            color='textSecondary'
-          >
-            {localizedContent.cookTime}: {selectedRecipe.cookTime}
-          </Typography>
+          <ListItemIcon
+            label={localizedContent.prepTime}
+            value={selectedRecipe.preparationTime}
+          />
+          <ListItemIcon
+            label={localizedContent.cookTime}
+            value={selectedRecipe.cookTime}
+          />
           {selectedRecipe.servings && (
-            <Typography
-              className={classes.info}
-              variant='body2'
-              color='textSecondary'
-            >
-              {localizedContent.servings}: {selectedRecipe.servings}
-            </Typography>
+            <ListItemIcon
+              label={localizedContent.servings}
+              value={selectedRecipe.servings}
+            />
           )}
-          <Divider className={classes.divider} />
+          <DividerBlue />
           <Chip
             className={classes.chip}
             size='small'
             label={localizedContent[selectedRecipe.dietType]}
             color='primary'
           />
+          <Chip
+            className={classes.chip}
+            size='small'
+            label={localizedContent[selectedRecipe.mealType]}
+            color='secondary'
+          />
         </div>
       </div>
-
-      <Divider className={classes.divider} />
-      <Typography
-        className={classes.info}
-        variant='body1'
-        color='textSecondary'
-      >
+      <Typography variant='h4' className={classes.title}>
+        {selectedRecipe.name}
+      </Typography>
+      <DividerBlue />
+      <Typography variant='h6' color='textSecondary'>
         {localizedContent.ingredients}
       </Typography>
       {documentToReactComponents(selectedRecipe.ingredients)}
-      <Divider className={classes.divider} />
-      <Typography
-        className={classes.info}
-        variant='body1'
-        color='textSecondary'
-      >
+      <DividerBlue />
+      <Typography variant='h6' color='textSecondary'>
         {localizedContent.steps}
       </Typography>
       {documentToReactComponents(selectedRecipe.steps)}
