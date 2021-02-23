@@ -3,6 +3,7 @@ import { client } from './client';
 
 export type IRecipeFields = {
   id: string;
+  slug: string;
   name: string;
   dietType: string;
   steps: Document;
@@ -27,6 +28,7 @@ export type IContentfulFields = {
 const toRecipeDto = (contentJson: any): IRecipeFields => {
   return {
     id: contentJson.fields?.id,
+    slug: contentJson.fields?.slug,
     name: contentJson.fields?.recipeLocal?.fields?.name,
     dietType: contentJson.fields?.dietType,
     steps: contentJson.fields?.recipeLocal?.fields?.steps,

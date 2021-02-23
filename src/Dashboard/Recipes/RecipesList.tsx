@@ -60,7 +60,7 @@ const RecipesList = () => {
       <Container>
         <Grid container spacing={2}>
           {recipesFiltered.map((recipe) => (
-            <Grid item sm={4} xs={6} key={recipe.id}>
+            <Grid item sm={4} xs={6} key={recipe.slug}>
               <RecipeCard {...recipe} />
             </Grid>
           ))}
