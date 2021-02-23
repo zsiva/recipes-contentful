@@ -21,6 +21,8 @@ export const localizedContent = {
     clear: 'Clear',
     dietType: 'Diet type',
     mealType: 'Meal type',
+    goToDashboard: 'Go back to the dasboard',
+    notFound: 'Page not found',
   },
   es: {
     bannerTitle: '¿Qué te apetece comer?',
@@ -44,5 +46,7 @@ export const localizedContent = {
     clear: 'Borrar',
     dietType: 'Tipo de dieta',
     mealType: 'Tipo de comida',
+    goToDashboard: 'Vuelve al panel inicial',
+    notFound: 'Página no encontrada',
   },
 };

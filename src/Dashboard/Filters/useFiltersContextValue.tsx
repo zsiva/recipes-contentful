@@ -6,7 +6,6 @@ export const useFiltersContextValue = (): FiltersContextData => {
 
   const toggleFilters = useCallback(
     (filterLabel: string) => {
-      console.log('filter', filterLabel);
       setFilters(filterLabel);
     },
     [setFilters]
