@@ -30,8 +30,9 @@ const useStyles = makeStyles((theme) => ({
   list: { overflow: 'hidden', maxHeight: 100 },
   title: {
     padding: 15,
+    minHeight: 50,
     fontWeight: 'bold',
-    borderBottom: '1px solid #dedde3',
+    borderBottom: `1px solid ${theme.palette.grey[300]}`,
     textTransform: 'uppercase',
     '&:hover': {
       color: theme.palette.primary.main,
@@ -39,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
       transition: '0.3s ease-in-out',
     },
   },
-  card: { position: 'relative' },
+  card: { position: 'relative', marginBottom: 30 },
 }));
 
 export default function RecipeCard(props: IRecipeFields) {

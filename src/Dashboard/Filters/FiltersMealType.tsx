@@ -1,7 +1,13 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Chip } from '@material-ui/core';
-import { Cake, Fastfood, LocalBar } from '@material-ui/icons';
+import {
+  Cake,
+  Fastfood,
+  LocalBar,
+  FreeBreakfast,
+  OutdoorGrill,
+} from '@material-ui/icons';
 import { FiltersContext } from './FiltersProvider';
 import { LanguageContext } from '../../Language/LanguageProvider';
 
@@ -20,9 +26,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export const mealTypes = [
+  { label: 'breakfast', icon: <FreeBreakfast /> },
   { label: 'lunch', icon: <Fastfood /> },
-  { label: 'drinks', icon: <LocalBar /> },
+  { label: 'dinner', icon: <OutdoorGrill /> },
   { label: 'dessert', icon: <Cake /> },
+  { label: 'drinks', icon: <LocalBar /> },
 ];
 
 export default function FiltersMealType() {
