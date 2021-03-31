@@ -1,36 +1,34 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Typography,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-} from '@material-ui/core';
+import { Select, MenuItem, FormControl } from '@material-ui/core';
 import { Eco, HighlightOff } from '@material-ui/icons';
-import { green } from '@material-ui/core/colors';
+import { green, grey } from '@material-ui/core/colors';
 import { FiltersContext } from './FiltersProvider';
 import { LanguageContext } from '../../Language/LanguageProvider';
+import FilterCard from './FilterCard';
 
 export const dietTypes = [
-  { label: 'vegan', icon: <Eco />, color: green[400] },
-  { label: 'vegetarian', icon: <Eco />, color: green[600] },
+  { label: 'vegan', icon: <Eco />, color: green[300] },
+  { label: 'vegetarian', icon: <Eco />, color: green[400] },
+  { label: 'clear', icon: <HighlightOff />, color: grey[500] },
 ];
 
 const useStyles = makeStyles((theme) => ({
-  filters: {
-    [theme.breakpoints.up('md')]: {
-      display: 'flex',
-      justifyContent: 'center',
-      flexWrap: 'wrap',
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+    [theme.breakpoints.down('xs')]: {
+      width: '100%',
+    },
+    [theme.breakpoints.up('sm')]: {
+      display: 'none',
     },
   },
-  label: {
-    lineHeight: '3rem',
-    marginRight: 10,
-    fontWeight: 'bold',
+  filterCards: {
     [theme.breakpoints.down('xs')]: {
       display: 'none',
     },
+    [theme.breakpoints.up('sm')]: {},
   },
 }));
 
@@ -40,42 +38,31 @@ export default function FiltersDietType() {
   const classes = useStyles();
 
   return (
-    <div className={classes.filters}>
-      <Typography className={classes.label}>
-        {localizedContent.dietType}
-      </Typography>
-      <RadioGroup
-        row
-        aria-label='food-diet-filter'
-        name='food-diet-filter'
-        value={filter}
-      >
+    <>
+      <div className={classes.filterCards}>
         {dietTypes.map((diet) => (
-          <FormControlLabel
+          <FilterCard
             key={diet.label}
-            value={diet.label}
-            control={
-              <Radio
-                checked={filter === diet.label}
-                color='primary'
-                icon={diet.icon}
-                onChange={() => toggleFilters(diet.label)}
-              />
-            }
-            label={localizedContent[diet.label]}
+            {...diet}
+            label={localizedContent[diet.label] as string}
           />
         ))}
-        <FormControlLabel
-          control={
-            <Radio
-              color='primary'
-              icon={<HighlightOff />}
-              onChange={() => toggleFilters('')}
-            />
+      </div>
+      <FormControl variant='outlined' className={classes.formControl}>
+        <Select
+          value={filter}
+          onChange={(event: React.ChangeEvent<{ value: unknown }>) =>
+            toggleFilters(event.target.value as string)
           }
-          label={localizedContent.clear}
-        />
-      </RadioGroup>
-    </div>
+        >
+          <MenuItem value=''>None</MenuItem>
+          {dietTypes.map((diet) => (
+            <MenuItem key={diet.label} value={diet.label}>
+              {localizedContent[diet.label]}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+    </>
   );
 }

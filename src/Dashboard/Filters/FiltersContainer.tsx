@@ -1,16 +1,9 @@
 import React, { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import {
-  Typography,
-  Container,
-  Accordion,
-  AccordionSummary,
-  AccordionDetails,
-} from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Typography, Container } from '@material-ui/core';
 import { LanguageContext } from '../../Language/LanguageProvider';
 import Filters from './Filters';
-import FiltersDietType from './FiltersDietType';
+import FiltersMobile from './FiltersMobile';
 
 const useStyles = makeStyles((theme) => ({
   filtersContainer: { paddingTop: 50, paddingBottom: 15 },
@@ -29,14 +22,7 @@ const useStyles = makeStyles((theme) => ({
       padding: '0 10px',
     },
   },
-  label: {
-    lineHeight: '2rem',
-    fontWeight: 'bold',
-    [theme.breakpoints.up('xs')]: {
-      marginLeft: 20,
-    },
-  },
-  accordion: {
+  filtersMobile: {
     [theme.breakpoints.up('sm')]: {
       display: 'none',
     },
@@ -62,20 +48,10 @@ export default function FiltersContainer() {
       >
         <span>{localizedContent.filters}</span>
       </Typography>
-      <Accordion className={classes.accordion}>
-        <AccordionSummary
-          expandIcon={<ExpandMoreIcon />}
-          aria-controls='mobile-filters'
-          id='mobile-filters'
-        >
-          <Typography align='center' gutterBottom>
-            <span>{localizedContent.dietType}</span>
-          </Typography>
-        </AccordionSummary>
-        <AccordionDetails>
-          <FiltersDietType />
-        </AccordionDetails>
-      </Accordion>
+      <div className={classes.filtersMobile}>
+        <FiltersMobile />
+      </div>
+
       <div className={classes.filtersBlock}>
         <Filters />
       </div>
