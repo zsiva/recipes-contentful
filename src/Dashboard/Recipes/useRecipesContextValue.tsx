@@ -10,12 +10,17 @@ export const useRecipesContextValue = (): RecipesContextData => {
   const [filters, setFilters] = useState<string[]>([]);
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
 
   const fetchRecipes = useCallback(
     async (locale: string) => {
       setIsLoading(true);
-      const data = await fetchContentData(locale);
-      setRecipes(data);
+      try {
+        const data = await fetchContentData(locale);
+        setRecipes(data);
+      } catch {
+        setHasError(true)
+      }
       setIsLoading(false);
     },
     [setRecipes]
@@ -47,6 +52,7 @@ export const useRecipesContextValue = (): RecipesContextData => {
       search,
       toggleFilters,
       filters,
+      hasError
     }),
     [
       recipes,
@@ -56,6 +62,7 @@ export const useRecipesContextValue = (): RecipesContextData => {
       search,
       toggleFilters,
       filters,
+      hasError
     ]
   );
 };

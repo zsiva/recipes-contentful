@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RecipesList = () => {
-  const { recipes, fetchRecipes, search } = useContext(RecipesContext);
+  const { recipes, fetchRecipes, search, hasError } = useContext(RecipesContext);
   const { filter } = useContext(FiltersContext);
   const { userLocale, localizedContent } = useContext(LanguageContext);
   const classes = useStyles();
@@ -38,6 +38,9 @@ const RecipesList = () => {
     fetchRecipes(userLocale);
   }, [fetchRecipes, userLocale]);
 
+  if (hasError) {
+    return <Typography component='h1' align='center'>{localizedContent.recipesError}</Typography>
+  }
   let recipesFiltered: IRecipeFields[] = recipes.filter((recipe) =>
     recipe.name.toLowerCase().includes(search.toLowerCase())
   );

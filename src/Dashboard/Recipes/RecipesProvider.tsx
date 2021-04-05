@@ -9,6 +9,7 @@ export type RecipesContextData = {
   search: string;
   toggleFilters: (item: string) => void;
   filters: string[];
+  hasError: boolean
 };
 
 export const recipesDefaultValue: RecipesContextData = {
@@ -19,6 +20,7 @@ export const recipesDefaultValue: RecipesContextData = {
   search: '',
   toggleFilters: () => null,
   filters: [],
+  hasError: false
 };
 
 export const RecipesContext = createContext<RecipesContextData>(

@@ -24,6 +24,7 @@ export const localizedContent = {
     mealType: 'Meal type',
     goToDashboard: 'Go back to the dasboard',
     notFound: 'Page not found',
+    recipesError: 'There was an error loading the recipes'
   },
   es: {
     bannerTitle: '¿Qué te apetece comer?',
@@ -50,5 +51,6 @@ export const localizedContent = {
     mealType: 'Tipo de comida',
     goToDashboard: 'Vuelve al panel inicial',
     notFound: 'Página no encontrada',
+    recipesError: 'Ha habido un error cargando las recetas'
   },
 };
