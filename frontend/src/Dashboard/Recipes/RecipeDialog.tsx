@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import CloseIcon from '@material-ui/icons/Close';
 import DialogContent from '@material-ui/core/DialogContent';
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
-import { IRecipeFields } from '../../utils/contentful/fetchData';
+import { IRecipeFields } from '../../utils/contentful/types';
 import { LanguageContext } from '../../Language/LanguageProvider';
 
 type RecipeDialogProps = IRecipeFields & {
