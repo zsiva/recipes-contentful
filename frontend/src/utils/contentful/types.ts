@@ -13,6 +13,5 @@ export type IRecipeFields = {
   rating: number;
   author: string;
   headerImage: string;
-  description: string;
   mealType: string;
 };
