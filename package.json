@@ -30,6 +30,7 @@
   "dependencies": {
     "@contentful/rich-text-types": "^14.1.2",
     "contentful": "^8.2.1",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "path": "^0.12.7"
   }
