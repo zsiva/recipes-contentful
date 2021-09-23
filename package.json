@@ -4,8 +4,8 @@
   "description": "Recipes page",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node build/app.js",
-    "build": "tsc",
+    "start": "npx ts-node src/app.ts",
+    "build": "npx tsc",
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "heroku-postbuild": "cd frontend && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
   },
