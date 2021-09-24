@@ -1,10 +1,10 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   Typography,
   FormControlLabel,
   Radio,
-  RadioGroup,
+  RadioGroup
 } from '@material-ui/core';
 import { Eco, HighlightOff } from '@material-ui/icons';
 import { green } from '@material-ui/core/colors';
@@ -28,9 +28,6 @@ const useStyles = makeStyles((theme) => ({
     lineHeight: '3rem',
     marginRight: 10,
     fontWeight: 'bold',
-    [theme.breakpoints.down('xs')]: {
-      display: 'none',
-    },
   },
 }));
 

@@ -3,7 +3,7 @@ import { Grid, Container, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RecipeCard from './RecipeCard';
 import { RecipesContext } from './RecipesProvider';
-import { IRecipeFields } from '../../utils/contentful/fetchData';
+import { IRecipeFields } from '../../utils/contentful/types';
 import { LanguageContext } from '../../Language/LanguageProvider';
 import { FiltersContext } from '../Filters/FiltersProvider';
 

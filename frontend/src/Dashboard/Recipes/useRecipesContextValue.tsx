@@ -1,9 +1,7 @@
 import { useState, useCallback, useMemo } from 'react';
 import { RecipesContextData } from './RecipesProvider';
-import {
-  IRecipeFields,
-  fetchContentData,
-} from '../../utils/contentful/fetchData';
+import { IRecipeFields } from '../../utils/contentful/types';
+import config from '../../config';
 
 export const useRecipesContextValue = (): RecipesContextData => {
   const [recipes, setRecipes] = useState<IRecipeFields[]>([]);
@@ -16,8 +14,11 @@ export const useRecipesContextValue = (): RecipesContextData => {
     async (locale: string) => {
       setIsLoading(true);
       try {
-        const data = await fetchContentData(locale);
-        setRecipes(data);
+        const response = await fetch(`${config.baseUrl}/api/recipes`, {
+          headers: { 'Accept-Language': locale }
+        });
+        const recipes = await response.json()
+        setRecipes(recipes);
       } catch {
         setHasError(true)
       }
