@@ -7,8 +7,7 @@ import { Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { IRecipeFields } from '../../utils/contentful/types';
 import { LanguageContext } from '../../Language/LanguageProvider';
-import { dietTypes } from '../Filters/FiltersDietType';
-import { mealTypes } from '../Filters/FiltersMealType';
+import { dietTypes, mealTypes } from '../Filters/FiltersContainer';
 
 const useStyles = makeStyles((theme) => ({
   media: {
@@ -22,9 +21,6 @@ const useStyles = makeStyles((theme) => ({
   },
   rightButton: {
     float: 'right',
-    [theme.breakpoints.down('xs')]: {
-      float: 'none',
-    },
   },
   chip: { margin: 8 },
   list: { overflow: 'hidden', maxHeight: 100 },
@@ -33,7 +29,6 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 50,
     fontWeight: 'bold',
     borderBottom: `1px solid ${theme.palette.grey[300]}`,
-    textTransform: 'uppercase',
     '&:hover': {
       color: theme.palette.primary.main,
       cursor: 'pointer',

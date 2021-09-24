@@ -10,7 +10,7 @@ import { LanguageContext } from '../../Language/LanguageProvider';
 import { RecipesContext } from './RecipesProvider';
 import ListItemIcon from '../../shared/ListItemIcon';
 import DividerBlue from '../../shared/DividerBlue';
-import { mealTypes } from './../Filters/FiltersMealType';
+import { mealTypes } from './../Filters/FiltersContainer';
 
 const useStyles = makeStyles((theme) => ({
   title: {
