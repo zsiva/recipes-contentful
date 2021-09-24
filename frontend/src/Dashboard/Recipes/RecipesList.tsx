@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { Grid, Container, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import RecipeCard from './RecipeCard';
@@ -6,6 +6,7 @@ import { RecipesContext } from './RecipesProvider';
 import { IRecipeFields } from '../../utils/contentful/types';
 import { LanguageContext } from '../../Language/LanguageProvider';
 import { FiltersContext } from '../Filters/FiltersProvider';
+import FiltersContainer from '../Filters/FiltersContainer';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -51,7 +52,7 @@ const RecipesList = () => {
   }
 
   return (
-    <div className={classes.container}>
+    <Container className={classes.container}>
       <Typography
         className={classes.title}
         component='h1'
@@ -60,16 +61,17 @@ const RecipesList = () => {
       >
         <span>{localizedContent.recipes}</span>
       </Typography>
+      <FiltersContainer />
       <Container>
         <Grid container spacing={2}>
           {recipesFiltered.map((recipe) => (
-            <Grid item sm={4} xs={6} key={recipe.slug}>
+            <Grid item md={4} sm={6} xs={12} key={recipe.slug}>
               <RecipeCard {...recipe} />
             </Grid>
           ))}
         </Grid>
       </Container>
-    </div>
+    </Container>
   );
 };
 

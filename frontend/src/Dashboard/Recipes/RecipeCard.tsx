@@ -22,9 +22,6 @@ const useStyles = makeStyles((theme) => ({
   },
   rightButton: {
     float: 'right',
-    [theme.breakpoints.down('xs')]: {
-      float: 'none',
-    },
   },
   chip: { margin: 8 },
   list: { overflow: 'hidden', maxHeight: 100 },
@@ -33,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     minHeight: 50,
     fontWeight: 'bold',
     borderBottom: `1px solid ${theme.palette.grey[300]}`,
-    textTransform: 'uppercase',
     '&:hover': {
       color: theme.palette.primary.main,
       cursor: 'pointer',

@@ -11,7 +11,6 @@ const Dashboard = () => {
     <main>
       <Banner />
       <FiltersContext.Provider value={filtersDefaultValue}>
-        <FiltersContainer />
         <RecipesList />
       </FiltersContext.Provider>
     </main>
