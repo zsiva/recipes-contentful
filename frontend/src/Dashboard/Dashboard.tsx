@@ -1,7 +1,6 @@
 import React from 'react';
 import Banner from './Banner';
 import RecipesList from './Recipes/RecipesList';
-import FiltersContainer from './Filters/FiltersContainer';
 import { FiltersContext } from './Filters/FiltersProvider';
 import { useFiltersContextValue } from './Filters/useFiltersContextValue';
 

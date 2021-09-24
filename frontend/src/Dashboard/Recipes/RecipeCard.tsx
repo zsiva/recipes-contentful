@@ -7,8 +7,7 @@ import { Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { IRecipeFields } from '../../utils/contentful/types';
 import { LanguageContext } from '../../Language/LanguageProvider';
-import { dietTypes } from '../Filters/FiltersDietType';
-import { mealTypes } from '../Filters/FiltersMealType';
+import { dietTypes, mealTypes } from '../Filters/FiltersContainer';
 
 const useStyles = makeStyles((theme) => ({
   media: {
