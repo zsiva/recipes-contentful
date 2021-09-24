@@ -4,9 +4,9 @@
   "description": "Recipes page",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node src/app.ts",
+    "start": "node build/app.js",
     "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
-    "heroku-postbuild": "cd frontend && npm install && npm run build"
+    "heroku-postbuild": "tsc && cd frontend && npm install && npm run build"
   },
   "repository": {
     "type": "git",
