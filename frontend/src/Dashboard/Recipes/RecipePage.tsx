@@ -10,7 +10,7 @@ import { LanguageContext } from '../../Language/LanguageProvider';
 import { RecipesContext } from './RecipesProvider';
 import ListItemIcon from '../../shared/ListItemIcon';
 import DividerBlue from '../../shared/DividerBlue';
-import { mealTypes } from './../Filters/FiltersContainer';
+import { mealTypes, dietTypes } from './../../utils/chipTypes';
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -70,6 +70,10 @@ export default function RecipePage() {
     (meal) => meal.label === selectedRecipe.mealType
   );
 
+  const dietType = dietTypes.find(
+    (diet) => diet.label === selectedRecipe.dietType
+  );
+
   return (
     <Container className={classes.container}>
       <Typography variant='h5' className={classes.titleMob}>
@@ -108,12 +112,14 @@ export default function RecipePage() {
             className={classes.chip}
             label={localizedContent[selectedRecipe.dietType]}
             color='primary'
+            style={{ backgroundColor: dietType?.color}}
+            icon={dietType?.icon}
           />
           {mealType && (
             <Chip
               className={classes.chip}
               label={localizedContent[mealType.label]}
-              color={'secondary'}
+              color='primary'
               icon={mealType.icon}
             />
           )}

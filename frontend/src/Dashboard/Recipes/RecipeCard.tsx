@@ -7,12 +7,12 @@ import { Typography } from '@material-ui/core';
 import { useHistory } from 'react-router-dom';
 import { IRecipeFields } from '../../utils/contentful/types';
 import { LanguageContext } from '../../Language/LanguageProvider';
-import { dietTypes, mealTypes } from '../Filters/FiltersContainer';
+import { dietTypes, mealTypes } from '../../utils/chipTypes';
 
 const useStyles = makeStyles((theme) => ({
   media: {
     height: 0,
-    paddingTop: '50%',
+    paddingTop: '40%',
     '&:hover': {
       opacity: '0.5',
       cursor: 'pointer',
@@ -81,6 +81,7 @@ export default function RecipeCard(props: IRecipeFields) {
               label={localizedContent[props.mealType]}
               color='primary'
               icon={currentMealType?.icon}
+              style={{ backgroundColor: currentMealType?.color }}
             />
           </div>
         )}

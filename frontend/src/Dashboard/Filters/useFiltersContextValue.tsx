@@ -3,7 +3,7 @@ import { FiltersContextData } from './FiltersProvider';
 
 export const useFiltersContextValue = (): FiltersContextData => {
   const [filter, setFilters] = useState<string>('');
-  console.log(filter)
+
   const toggleFilters = useCallback(
     (filterLabel: string) => {
       setFilters(filterLabel);
